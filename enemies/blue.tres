@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://y2fy4jdj2jxr"]
+
+[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy_data.gd" id="1_exds7"]
+[ext_resource type="PackedScene" uid="uid://5pslo1bqarlr" path="res://scenes/blue.tscn" id="1_xmgot"]
+
+[resource]
+script = ExtResource("1_exds7")
+model = ExtResource("1_xmgot")
+health = 10
+move_speed = 5
+damage = 2
+metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
