@@ -32,7 +32,7 @@ func _ready():
 	attack_indicator.visible = false
 	_reset_attack_indicator()
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float):
 	if not player:
 		return
 		
@@ -85,3 +85,11 @@ func _reset_attack_indicator():
 	indicator_current_radius = 0.0
 	indicator_target_radius = 0.0
 	_update_attack_indicator_mesh(0.0)
+
+func reduce_health(amount: int):
+	data.health -= amount
+	if data.health <= 0:
+		die()
+
+func die():
+	queue_free()

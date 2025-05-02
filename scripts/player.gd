@@ -1,5 +1,8 @@
 extends CharacterBody2D
 
+@onready var left_hand_weapon: Weapon = $LeftHandWeapon
+@onready var right_hand_weapon: Weapon = $RightHandWeapon
+
 @export var data: PlayerData
 
 var _w: bool
@@ -9,11 +12,11 @@ var _d: bool
 
 var _direction = Vector2(0.0, 0.0)
 
-func _physics_process(delta: float) -> void:
-	_update_movement(delta)
+func _physics_process(_delta: float):
+	look_at(get_global_mouse_position())
+	_update_movement()
 
-func _update_movement(delta):
-	# Computes desired direction from key states
+func _update_movement():
 	_direction = Vector2(
 		(_d as float) - (_a as float),
 		(_s as float) - (_w as float)
@@ -34,9 +37,16 @@ func _input(event: InputEvent):
 			KEY_D:
 				_d = event.pressed
 
+func _unhandled_input(event):
+	if event is InputEventMouseButton:
+		match event.button_index:
+			MOUSE_BUTTON_LEFT:
+				left_hand_weapon.attack(get_global_mouse_position())
+			MOUSE_BUTTON_RIGHT:
+				right_hand_weapon.attack(get_global_mouse_position())
+
 func reduce_health(amount: int):
 	data.health -= amount
-	print(data.health)
 	if data.health <= 0:
 		die()
 

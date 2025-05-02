@@ -2,11 +2,10 @@
 
 [ext_resource type="Script" uid="uid://bj5ofhicbsont" path="res://scripts/enemy.gd" id="1_oahj1"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_0wfyh"]
-size = Vector3(2, 2, 1)
+[sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(2, 2)
+size = Vector2(1, 1)
 
 [sub_resource type="SphereMesh" id="SphereMesh_oahj1"]
 radius = 1.0
@@ -21,12 +20,12 @@ script = ExtResource("1_oahj1")
 modulate = Color(0.227589, 0.500837, 0.869717, 1)
 z_index = 1
 y_sort_enabled = true
-mesh = SubResource("BoxMesh_0wfyh")
+mesh = SubResource("QuadMesh_oahj1")
 
 [node name="Collsion" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="AttackIndicator" type="MeshInstance2D" parent="."]
-modulate = Color(1, 0, 0, 0.5)
+modulate = Color(0.54, 0.54, 0.54, 0.4)
 show_behind_parent = true
 mesh = SubResource("SphereMesh_oahj1")

@@ -71,6 +71,6 @@ func _spawn_enemies():
 		var enemy_data = enemies[randi() % enemies.size()]
 		var enemy_scene = enemy_data.model
 		var enemy = enemy_scene.instantiate()
-		enemy.data = enemy_data
+		enemy.data = enemy_data.duplicate()
 		enemy.global_position = spawn_pos
 		add_child(enemy)
