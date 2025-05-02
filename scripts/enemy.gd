@@ -38,7 +38,7 @@ func _physics_process(_delta: float):
 		_start_attack()
 
 	var direction = (player.global_position - global_position).normalized()
-	velocity = direction * data.move_speed
+	velocity = direction.normalized() * data.move_speed
 	
 	move_and_slide()
 
