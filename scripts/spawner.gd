@@ -5,15 +5,13 @@ extends Node2D
 @export var player: CharacterBody2D
 
 var wave_size = randi_range(1, 3)
-var spawn_timer: Timer
+var spawn_timer: TimerHelper = TimerHelper.new()
 
-# Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	randomize()
-	
-	spawn_timer = Timer.new()
 	spawn_timer.autostart = true
-	spawn_timer.wait_time = 2
+	spawn_timer.wait_time = 5
+	spawn_timer.one_shot = false
 	spawn_timer.timeout.connect(_on_timeout)
 	add_child(spawn_timer)
 
@@ -27,7 +25,6 @@ func _spawn_enemies():
 	var spawn_areas := world.get_node("SpawnAreas")
 	var valid_spawn_rects: Array[Rect2] = []
 
-	# Suche alle gültigen Spawnbereiche
 	for spawn in spawn_areas.get_children():
 		if not spawn is StaticBody2D:
 			continue
@@ -42,7 +39,6 @@ func _spawn_enemies():
 			rect_shape.extents * 2
 		)
 
-		# Spieler darf nicht im Spawnbereich sein
 		if not rect.has_point(player.global_position):
 			valid_spawn_rects.append(rect)
 
@@ -50,10 +46,8 @@ func _spawn_enemies():
 		print("Keine gültigen Spawnbereiche verfügbar.")
 		return
 
-	# Wähle zufällig einen gültigen Bereich
 	var selected_rect = valid_spawn_rects[randi() % valid_spawn_rects.size()]
 
-	# Gruppenzentrum leicht zufällig innerhalb des Bereichs
 	var center_x = randf_range(
 		selected_rect.position.x + 15, selected_rect.position.x + selected_rect.size.x - 15
 	)
@@ -63,14 +57,12 @@ func _spawn_enemies():
 	var group_center = Vector2(center_x, center_y)
 
 	for i in wave_size:
-		# Gegner in engem Radius um Gruppenzentrum
 		var offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
 		var spawn_pos = group_center + offset
 
-		# Gegnerdaten & Instanz
 		var enemy_data = enemies[randi() % enemies.size()]
 		var enemy_scene = enemy_data.model
 		var enemy = enemy_scene.instantiate()
-		enemy.data = enemy_data
+		enemy.data = enemy_data.duplicate()
 		enemy.global_position = spawn_pos
 		add_child(enemy)
