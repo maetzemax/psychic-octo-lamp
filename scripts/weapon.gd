@@ -6,7 +6,6 @@ enum WeaponType { MELEE, RANGED }
 
 @export var weapon_data: WeaponData
 @export var weapon_type: WeaponType
-@export var is_left_hand: bool = false
 
 var attack_cooldown := false
 var attack_timer: TimerHelper = TimerHelper.new()
@@ -15,6 +14,9 @@ func _ready():
 	attack_timer.wait_time = 1.0 / weapon_data.attack_speed
 	attack_timer.timeout.connect(_on_attack_timeout)
 	add_child(attack_timer)
+	
+func _physics_process(_delta: float):
+	attack(get_global_mouse_position())
 
 func attack(target_position: Vector2):
 	if attack_cooldown:

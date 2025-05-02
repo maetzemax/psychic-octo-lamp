@@ -1,8 +1,5 @@
 extends CharacterBody2D
 
-@onready var left_hand_weapon: Weapon = $LeftHandWeapon
-@onready var right_hand_weapon: Weapon = $RightHandWeapon
-
 @export var data: PlayerData
 
 var _w: bool
@@ -36,14 +33,6 @@ func _input(event: InputEvent):
 				_a = event.pressed
 			KEY_D:
 				_d = event.pressed
-
-func _unhandled_input(event):
-	if event is InputEventMouseButton:
-		match event.button_index:
-			MOUSE_BUTTON_LEFT:
-				left_hand_weapon.attack(get_global_mouse_position())
-			MOUSE_BUTTON_RIGHT:
-				right_hand_weapon.attack(get_global_mouse_position())
 
 func reduce_health(amount: int):
 	data.health -= amount
