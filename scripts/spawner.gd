@@ -4,16 +4,15 @@ extends Node2D
 @export var world: Node2D
 @export var player: CharacterBody2D
 
-var wave_size = randi_range(1, 3)
-var spawn_timer: Timer
+var wave_size = randi_range(2, 5)
+var spawn_timer: TimerHelper = TimerHelper.new()
 
 # Called when the node enters the scene tree for the first time.
-func _ready() -> void:
+func _ready():
 	randomize()
-	
-	spawn_timer = Timer.new()
 	spawn_timer.autostart = true
 	spawn_timer.wait_time = 2
+	spawn_timer.one_shot = false
 	spawn_timer.timeout.connect(_on_timeout)
 	add_child(spawn_timer)
 

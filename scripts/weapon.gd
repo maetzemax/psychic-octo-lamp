@@ -9,12 +9,10 @@ enum WeaponType { MELEE, RANGED }
 @export var is_left_hand: bool = false
 
 var attack_cooldown := false
-var attack_timer: Timer
+var attack_timer: TimerHelper = TimerHelper.new()
 
 func _ready():
-	attack_timer = Timer.new()
 	attack_timer.wait_time = 1.0 / weapon_data.attack_speed
-	attack_timer.one_shot = true
 	attack_timer.timeout.connect(_on_attack_timeout)
 	add_child(attack_timer)
 

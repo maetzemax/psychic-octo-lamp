@@ -6,8 +6,8 @@ var player: CharacterBody2D
 var is_attacking = false
 var can_attack = true
 
-var attack_timer: Timer
-var cooldown_timer: Timer
+@onready var attack_timer: TimerHelper = TimerHelper.new()
+@onready var cooldown_timer: TimerHelper = TimerHelper.new()
 
 @onready var attack_indicator: MeshInstance2D = $AttackIndicator
 var indicator_target_radius := 0.0
@@ -17,15 +17,11 @@ const SCALE_SPEED := 6.0
 func _ready():
 	player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 
-	attack_timer = Timer.new()
 	attack_timer.wait_time = 1.0 / data.attack_speed
-	attack_timer.one_shot = true
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
 	add_child(attack_timer)
 
-	cooldown_timer = Timer.new()
 	cooldown_timer.wait_time = 1.0 / data.attack_speed
-	cooldown_timer.one_shot = true
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	add_child(cooldown_timer)
 
