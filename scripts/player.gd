@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-const SPEED = 20.0
+@export var data: PlayerData
 
 var _w: bool
 var _s: bool
@@ -19,7 +19,7 @@ func _update_movement(delta):
 		(_s as float) - (_w as float)
 	)
 	
-	velocity = _direction * SPEED
+	velocity = _direction.normalized() * data.move_speed
 	move_and_slide()
 
 func _input(event: InputEvent):
@@ -33,3 +33,12 @@ func _input(event: InputEvent):
 				_a = event.pressed
 			KEY_D:
 				_d = event.pressed
+
+func reduce_health(amount: int):
+	data.health -= amount
+	print(data.health)
+	if data.health <= 0:
+		die()
+
+func die():
+	queue_free()

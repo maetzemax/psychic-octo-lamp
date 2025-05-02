@@ -4,6 +4,7 @@ extends Node2D
 @export var world: Node2D
 @export var player: CharacterBody2D
 
+var wave_size = randi_range(1, 3)
 var spawn_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
@@ -12,7 +13,7 @@ func _ready() -> void:
 	
 	spawn_timer = Timer.new()
 	spawn_timer.autostart = true
-	spawn_timer.wait_time = 5
+	spawn_timer.wait_time = 2
 	spawn_timer.timeout.connect(_on_timeout)
 	add_child(spawn_timer)
 
@@ -20,6 +21,9 @@ func _on_timeout():
 	_spawn_enemies()
 
 func _spawn_enemies():
+	if player == null:
+		return
+	
 	var spawn_areas := world.get_node("SpawnAreas")
 	var valid_spawn_rects: Array[Rect2] = []
 
@@ -58,8 +62,7 @@ func _spawn_enemies():
 	)
 	var group_center = Vector2(center_x, center_y)
 
-	var group_size = randi_range(3, 7)
-	for i in group_size:
+	for i in wave_size:
 		# Gegner in engem Radius um Gruppenzentrum
 		var offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
 		var spawn_pos = group_center + offset
