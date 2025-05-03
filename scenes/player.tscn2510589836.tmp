@@ -1,15 +1,8 @@
 [gd_scene load_steps=9 format=3 uid="uid://bfwdxpk4ersdu"]
 
 [ext_resource type="Script" uid="uid://lf7upko3g87" path="res://scripts/player.gd" id="1_3vyb7"]
-[ext_resource type="Script" uid="uid://j8e3k25sl211" path="res://models/player_data.gd" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://qqv1xko0xu0x" path="res://scripts/weapon.gd" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://ci7s0iyainkp8" path="res://models/weapon_data.gd" id="3_dqkch"]
-
-[sub_resource type="Resource" id="Resource_qlg0r"]
-script = ExtResource("2_dqkch")
-health = 150
-move_speed = 40.0
-metadata/_custom_type_script = "uid://j8e3k25sl211"
 
 [sub_resource type="QuadMesh" id="QuadMesh_3vyb7"]
 size = Vector2(2, 2)
@@ -17,19 +10,27 @@ size = Vector2(2, 2)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
 size = Vector2(2, 2)
 
-[sub_resource type="Resource" id="Resource_dqkch"]
+[sub_resource type="Resource" id="Resource_qlg0r"]
 script = ExtResource("3_dqkch")
-attack_type = 1
-attack_damage = 10
+damage = 5
 attack_speed = 3.0
-attack_range = 0.0
-projectile_speed = 50.0
+attack_range = 10.0
+metadata/_custom_type_script = "uid://ci7s0iyainkp8"
+
+[sub_resource type="SphereMesh" id="SphereMesh_qhqgy"]
+radius = 1.0
+height = 2.0
+
+[sub_resource type="Resource" id="Resource_tuyoq"]
+script = ExtResource("3_dqkch")
+damage = 20
+attack_speed = 1.5
+attack_range = 5.0
 metadata/_custom_type_script = "uid://ci7s0iyainkp8"
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
 y_sort_enabled = true
 script = ExtResource("1_3vyb7")
-data = SubResource("Resource_qlg0r")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 modulate = Color(0.18, 0.6, 0.229, 1)
@@ -42,9 +43,25 @@ shape = SubResource("RectangleShape2D_sugp2")
 [node name="Camera2D" type="Camera2D" parent="."]
 zoom = Vector2(10, 10)
 position_smoothing_enabled = true
-position_smoothing_speed = 2.0
 
-[node name="Weapon" type="Node2D" parent="."]
+[node name="LeftHandWeapon" type="Node2D" parent="."]
 position = Vector2(1, 0)
 script = ExtResource("2_qhqgy")
-data = SubResource("Resource_dqkch")
+weapon_data = SubResource("Resource_qlg0r")
+weapon_type = 1
+is_left_hand = true
+
+[node name="AttackIndicator" type="MeshInstance2D" parent="LeftHandWeapon"]
+modulate = Color(1, 0, 0, 0.5)
+show_behind_parent = true
+mesh = SubResource("SphereMesh_qhqgy")
+
+[node name="RightHandWeapon" type="Node2D" parent="."]
+position = Vector2(-1, 0)
+script = ExtResource("2_qhqgy")
+weapon_data = SubResource("Resource_tuyoq")
+
+[node name="AttackIndicator" type="MeshInstance2D" parent="RightHandWeapon"]
+modulate = Color(1, 0, 0, 0.5)
+show_behind_parent = true
+mesh = SubResource("SphereMesh_qhqgy")
