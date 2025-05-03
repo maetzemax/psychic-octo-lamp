@@ -58,7 +58,7 @@ func _on_attack_timer_timeout():
 
 func _perform_attack():
 	if player and position.distance_to(player.global_position) < data.attack_range:
-		player.reduce_health(data.damage)
+		player.reduce_health(data.attack_damage)
 	is_attacking = false
 
 func _on_cooldown_timer_timeout():

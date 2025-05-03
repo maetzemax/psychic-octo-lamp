@@ -33,7 +33,7 @@ func _physics_process(delta: float):
 	
 	if result:
 		if result.collider.has_method("reduce_health"):
-			result.collider.reduce_health(data.damage)
+			result.collider.reduce_health(data.attack_damage)
 		queue_free()
 
 func _on_lifespan_timeout():
