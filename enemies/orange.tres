@@ -12,4 +12,5 @@ attack_type = 0
 attack_damage = 10
 attack_range = 4.0
 attack_speed = 0.8
+projectile_speed = 30.0
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
