@@ -4,6 +4,7 @@ class_name Projectile
 
 var attack_damage: int
 var projectile_speed: float
+var collision_mask: int
 
 var direction: Vector2
 var velocity: Vector2
@@ -26,7 +27,7 @@ func _physics_process(delta: float):
 	query.to = global_position + velocity * delta
 	query.collide_with_areas = true
 	query.collide_with_bodies = true
-	query.collision_mask = 2
+	query.collision_mask = collision_mask
 	var result = space_state.intersect_ray(query)
 	
 	if result:

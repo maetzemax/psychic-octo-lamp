@@ -15,20 +15,6 @@ func _process(delta):
 		indicator_current_radius = lerp(indicator_current_radius, indicator_target_radius, delta * SCALE_SPEED)
 		_update_attack_indicator_mesh(indicator_current_radius)
 
-func _physics_process(_delta: float):
-	if not player:
-		return
-		
-	look_at(player.global_position)
-
-	if position.distance_to(player.global_position) < data.attack_range and can_attack:
-		_start_attack()
-
-	var direction = (player.global_position - global_position).normalized()
-	velocity = direction.normalized() * data.move_speed
-	
-	move_and_slide()
-
 func _start_attack():
 	super._start_attack()
 	attack_indicator.visible = true
@@ -55,7 +41,4 @@ func _perform_attack():
 	if player and position.distance_to(player.global_position) < data.attack_range:
 		player.reduce_health(data.attack_damage)
 	is_attacking = false
-	
-func _on_attack_timer_timeout():
-	super._on_attack_timer_timeout()
 	_reset_attack_indicator()

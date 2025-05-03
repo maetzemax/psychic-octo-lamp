@@ -22,6 +22,25 @@ func _ready():
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	add_child(cooldown_timer)
 
+func _physics_process(_delta: float):
+	if not player:
+		return
+		
+	look_at(player.global_position)
+
+	if position.distance_to(player.global_position) < data.attack_range and can_attack:
+		_start_attack()
+
+	var direction = (player.global_position - global_position).normalized()
+	velocity = direction.normalized() * data.move_speed
+	
+	match data.attack_type:
+		ATTACK.MEELE:
+			move_and_slide()
+		ATTACK.RANGE:
+			if position.distance_to(player.global_position) > data.attack_range:
+				move_and_slide()
+
 func _start_attack():
 	is_attacking = true
 	can_attack = false
