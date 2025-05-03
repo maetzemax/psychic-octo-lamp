@@ -59,4 +59,5 @@ func _perform_ranged_attack(target_position: Vector2):
 	projectile.projectile_speed = data.projectile_speed
 	projectile.attack_damage = data.attack_damage
 	projectile.collision_mask = LAYER_ENEMY_MELEE | LAYER_ENEMY_RANGED | LAYER_WORLD
+	projectile.collision_layer = 32
 	get_tree().current_scene.add_child(projectile)
