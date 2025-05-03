@@ -52,5 +52,6 @@ func _perform_ranged_attack(target_position: Vector2):
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = global_position
 	projectile.direction = (target_position - global_position).normalized()
-	projectile.data = data.duplicate()
+	projectile.projectile_speed = data.projectile_speed
+	projectile.attack_damage = data.attack_damage
 	get_tree().current_scene.add_child(projectile)

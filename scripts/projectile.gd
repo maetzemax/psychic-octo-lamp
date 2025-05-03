@@ -2,22 +2,20 @@ extends Node2D
 
 class_name Projectile
 
-var data: WeaponData
+var attack_damage: int
+var projectile_speed: float
 
 var direction: Vector2
 var velocity: Vector2
 
-var timer: Timer
+var timer: TimerHelper = TimerHelper.new()
 
 func _ready():
-	timer = Timer.new()
 	timer.wait_time = 3
-	timer.one_shot = true
 	timer.timeout.connect(_on_lifespan_timeout)
 	add_child(timer)
-	timer.start()
 
-	velocity = direction * data.projectile_speed
+	velocity = direction * projectile_speed
 
 func _physics_process(delta: float):
 	global_position += velocity * delta
@@ -33,7 +31,7 @@ func _physics_process(delta: float):
 	
 	if result:
 		if result.collider.has_method("reduce_health"):
-			result.collider.reduce_health(data.attack_damage)
+			result.collider.reduce_health(attack_damage)
 		queue_free()
 
 func _on_lifespan_timeout():
