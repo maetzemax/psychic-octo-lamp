@@ -2,6 +2,10 @@ extends Node2D
 
 class_name Weapon
 
+const LAYER_WORLD = 1 << 0
+const LAYER_ENEMY_MELEE = 1 << 2
+const LAYER_ENEMY_RANGED = 1 << 3
+
 @export var data: WeaponData
 
 var attack_cooldown := false
@@ -54,5 +58,5 @@ func _perform_ranged_attack(target_position: Vector2):
 	projectile.direction = (target_position - global_position).normalized()
 	projectile.projectile_speed = data.projectile_speed
 	projectile.attack_damage = data.attack_damage
-	projectile.collision_mask = 2
+	projectile.collision_mask = LAYER_ENEMY_MELEE | LAYER_ENEMY_RANGED | LAYER_WORLD
 	get_tree().current_scene.add_child(projectile)

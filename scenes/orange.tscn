@@ -9,8 +9,8 @@ size = Vector2(3, 3)
 size = Vector2(3, 3)
 
 [node name="Orange" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 21
 script = ExtResource("1_fxgmd")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]

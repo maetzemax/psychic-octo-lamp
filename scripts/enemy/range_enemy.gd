@@ -9,7 +9,7 @@ func _perform_attack():
 		projectile.direction = (player.global_position - global_position).normalized()
 		projectile.projectile_speed = data.projectile_speed
 		projectile.attack_damage = data.attack_damage
-		projectile.collision_mask = 1
+		projectile.collision_mask = 1 | 2
 		projectile.color = Color.GOLD
 		get_tree().current_scene.add_child(projectile)
 	is_attacking = false
