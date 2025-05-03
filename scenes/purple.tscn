@@ -10,8 +10,8 @@ size = Vector2(2, 2)
 size = Vector2(2, 2)
 
 [node name="Purple" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 8
+collision_mask = 25
 script = ExtResource("1_xn61j")
 projectile_scene = ExtResource("2_wu00j")
 
