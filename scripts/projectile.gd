@@ -5,6 +5,7 @@ class_name Projectile
 var attack_damage: int
 var projectile_speed: float
 var collision_mask: int
+var color: Color = Color.BLACK
 
 var direction: Vector2
 var velocity: Vector2
@@ -12,6 +13,7 @@ var velocity: Vector2
 var timer: TimerHelper = TimerHelper.new()
 
 func _ready():
+	$Mesh.modulate = color
 	timer.wait_time = 3
 	timer.timeout.connect(_on_lifespan_timeout)
 	add_child(timer)
