@@ -15,6 +15,9 @@ func _ready():
 	move_speed = data.move_speed * 10
 
 func _physics_process(_delta: float):
+	if GameManager.active_game_state != GameManager.FIGHTING:
+		return
+
 	look_at(get_global_mouse_position())
 	_update_movement()
 

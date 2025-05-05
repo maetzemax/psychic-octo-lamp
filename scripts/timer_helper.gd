@@ -7,6 +7,7 @@ signal timeout
 @export var wait_time: float = 1.0
 @export var autostart: bool = false
 @export var one_shot: bool = true
+@export var paused: bool
 
 var _timer: Timer
 
@@ -19,6 +20,9 @@ func _ready():
 
 	if autostart:
 		start()
+
+func _process(_delta: float):
+	_timer.paused = GameManager.active_game_state == GameManager.PAUSE
 
 func start():
 	_timer.start()
