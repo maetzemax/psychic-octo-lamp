@@ -16,6 +16,10 @@ run/print_header=false
 config/features=PackedStringArray("4.4", "Forward Plus")
 config/icon="res://icon.svg"
 
+[autoload]
+
+GameManager="*res://scripts/gamemanager/gamemanager.gd"
+
 [display]
 
 window/size/viewport_width=1600
@@ -29,4 +33,9 @@ Player=""
 
 [layer_names]
 
-2d_physics/layer_1="world"
+2d_physics/layer_1="World"
+2d_physics/layer_2="Player"
+2d_physics/layer_3="Enemy - Melee"
+2d_physics/layer_4="Enemy - Ranged"
+2d_physics/layer_5="Player-Projectile"
+2d_physics/layer_6="Enemy-Projectile"

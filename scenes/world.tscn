@@ -1,25 +1,25 @@
 [gd_scene load_steps=8 format=3 uid="uid://ualegbp2h0us"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
-size = Vector3(100, 100, 0.1)
+size = Vector3(1024, 1024, 0.1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
-size = Vector2(15, 15)
+size = Vector2(150, 150)
 
 [sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
-size = Vector3(101, 1, 1)
+size = Vector3(1025, 2, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
-size = Vector2(101, 1)
+size = Vector2(1025, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
-size = Vector2(101, 1)
+size = Vector2(1025, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
-size = Vector2(101, 1)
+size = Vector2(1025, 1)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
-size = Vector2(101, 1)
+size = Vector2(1025, 1)
 
 [node name="World" type="Node2D"]
 
@@ -29,28 +29,28 @@ mesh = SubResource("BoxMesh_sgp6g")
 [node name="SpawnAreas" type="Node2D" parent="."]
 
 [node name="Spawn1" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(-25, -25)
+position = Vector2(-250, -250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn1"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn2" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(0, -25)
+position = Vector2(0, -250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn2"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn3" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(25, -25)
+position = Vector2(250, -250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn3"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn4" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(-25, 0)
+position = Vector2(-250, 0)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn4"]
 shape = SubResource("RectangleShape2D_o5qli")
@@ -63,28 +63,28 @@ shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn6" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(25, 0)
+position = Vector2(250, 0)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn6"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn7" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(-25, 25)
+position = Vector2(-250, 250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn7"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn8" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(0, 25)
+position = Vector2(0, 250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn8"]
 shape = SubResource("RectangleShape2D_o5qli")
 disabled = true
 
 [node name="Spawn9" type="StaticBody2D" parent="SpawnAreas"]
-position = Vector2(25, 25)
+position = Vector2(250, 250)
 
 [node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn9"]
 shape = SubResource("RectangleShape2D_o5qli")
@@ -93,8 +93,7 @@ disabled = true
 [node name="Borders" type="Node2D" parent="."]
 
 [node name="BorderBottom" type="StaticBody2D" parent="Borders"]
-position = Vector2(0, 50)
-collision_layer = 3
+position = Vector2(0, 512)
 collision_mask = 0
 
 [node name="Mesh" type="MeshInstance2D" parent="Borders/BorderBottom"]
@@ -105,8 +104,7 @@ mesh = SubResource("BoxMesh_o5qli")
 shape = SubResource("RectangleShape2D_0wfyh")
 
 [node name="BorderTop" type="StaticBody2D" parent="Borders"]
-position = Vector2(0, -50)
-collision_layer = 3
+position = Vector2(0, -512)
 collision_mask = 0
 
 [node name="Mesh" type="MeshInstance2D" parent="Borders/BorderTop"]
@@ -117,9 +115,8 @@ mesh = SubResource("BoxMesh_o5qli")
 shape = SubResource("RectangleShape2D_jyhfs")
 
 [node name="BorderLeft" type="StaticBody2D" parent="Borders"]
-position = Vector2(-50, 0)
+position = Vector2(-512, 0)
 rotation = 1.5708
-collision_layer = 3
 collision_mask = 0
 
 [node name="Mesh" type="MeshInstance2D" parent="Borders/BorderLeft"]
@@ -130,9 +127,8 @@ mesh = SubResource("BoxMesh_o5qli")
 shape = SubResource("RectangleShape2D_tbgi4")
 
 [node name="BorderRight" type="StaticBody2D" parent="Borders"]
-position = Vector2(50, 0)
+position = Vector2(512, 0)
 rotation = 1.5708
-collision_layer = 3
 collision_mask = 0
 
 [node name="Mesh" type="MeshInstance2D" parent="Borders/BorderRight"]

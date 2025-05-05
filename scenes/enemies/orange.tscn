@@ -3,14 +3,14 @@
 [ext_resource type="Script" uid="uid://cnjpy6bv5edyw" path="res://scripts/enemy/melee_enemy.gd" id="1_fxgmd"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
-size = Vector2(3, 3)
+size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(3, 3)
+size = Vector2(48, 48)
 
 [node name="Orange" type="CharacterBody2D"]
-collision_layer = 2
-collision_mask = 2
+collision_layer = 4
+collision_mask = 21
 script = ExtResource("1_fxgmd")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
