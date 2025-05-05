@@ -45,4 +45,7 @@ func reduce_health(amount: int):
 		die()
 
 func die():
+	GameManager.active_game_state = GameManager.DEATH
+	var camera = Camera2D.new()
+	get_parent().add_child(camera)
 	queue_free()

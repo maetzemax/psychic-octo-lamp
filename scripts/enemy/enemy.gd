@@ -32,6 +32,7 @@ func _ready():
 
 func _physics_process(_delta: float):
 	if not player:
+		queue_free()
 		return
 		
 	look_at(player.global_position)
