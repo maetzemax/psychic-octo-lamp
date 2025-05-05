@@ -1,19 +1,20 @@
-[gd_scene load_steps=4 format=3 uid="uid://dw8l8du03gagd"]
+[gd_scene load_steps=4 format=3 uid="uid://ca8s8gmlovpny"]
 
-[ext_resource type="Script" uid="uid://cnjpy6bv5edyw" path="res://scripts/enemy/melee_enemy.gd" id="1_10bml"]
+[ext_resource type="Script" uid="uid://cnjpy6bv5edyw" path="res://scripts/enemy/melee_enemy.gd" id="1_fxgmd"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
+size = Vector2(48, 48)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(1, 1)
+size = Vector2(48, 48)
 
-[node name="Red" type="CharacterBody2D"]
+[node name="Orange" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 21
-script = ExtResource("1_10bml")
+script = ExtResource("1_fxgmd")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
-modulate = Color(0.90694, 0.153081, 0.276976, 1)
+modulate = Color(0.745035, 0.400557, 0.142407, 1)
 z_index = 1
 y_sort_enabled = true
 mesh = SubResource("QuadMesh_oahj1")

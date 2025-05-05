@@ -17,7 +17,7 @@ func _ready():
 	timer.timeout.connect(_on_lifespan_timeout)
 	add_child(timer)
 
-	velocity = direction * projectile_speed
+	velocity = direction * projectile_speed * 10
 
 func _physics_process(delta: float):
 	global_position += velocity * delta

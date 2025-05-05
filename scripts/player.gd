@@ -2,12 +2,17 @@ extends CharacterBody2D
 
 @export var data: PlayerData
 
+var move_speed
+
 var _w: bool
 var _s: bool
 var _a: bool
 var _d: bool
 
 var _direction = Vector2(0.0, 0.0)
+
+func _ready():
+	move_speed = data.move_speed * 10
 
 func _physics_process(_delta: float):
 	look_at(get_global_mouse_position())
@@ -19,7 +24,7 @@ func _update_movement():
 		(_s as float) - (_w as float)
 	)
 	
-	velocity = _direction.normalized() * data.move_speed
+	velocity = _direction.normalized() * move_speed
 	move_and_slide()
 
 func _input(event: InputEvent):

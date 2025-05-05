@@ -1,3 +1,5 @@
+extends Node
+
 class_name GameManager
 
 enum GAMESTATE { MAIN_MENU = 0, FIGHTING = 1, PAUSE = 2, DEATH = 3, LEVEL_UP = 4, SHOP = 5 }
