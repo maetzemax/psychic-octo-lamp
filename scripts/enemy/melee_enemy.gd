@@ -18,15 +18,15 @@ func _process(delta):
 func _start_attack():
 	super._start_attack()
 	attack_indicator.visible = true
-	indicator_target_radius = data.attack_range
+	indicator_target_radius = attack_range
 	indicator_current_radius = 0.0
 	_update_attack_indicator_mesh(0.0)
 
 func _update_attack_indicator_mesh(radius: float):
 	var circle_mesh = SphereMesh.new()
 	# -1 == half player size
-	circle_mesh.radius = radius - 1
-	circle_mesh.height = (radius - 1) * 2.0
+	circle_mesh.radius = radius - 16
+	circle_mesh.height = (radius - 16) * 2.0
 	attack_indicator.mesh = circle_mesh
 
 func _reset_attack_indicator():
@@ -38,7 +38,7 @@ func _reset_attack_indicator():
 	_update_attack_indicator_mesh(0.0)
 	
 func _perform_attack():
-	if player and position.distance_to(player.global_position) < data.attack_range:
+	if player and position.distance_to(player.global_position) < attack_range:
 		player.reduce_health(data.attack_damage)
 	is_attacking = false
 	_reset_attack_indicator()

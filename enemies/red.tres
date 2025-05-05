@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://hwtowdcwvtj6"]
 
-[ext_resource type="PackedScene" uid="uid://dw8l8du03gagd" path="res://scenes/red.tscn" id="1_oxeat"]
+[ext_resource type="PackedScene" uid="uid://dw8l8du03gagd" path="res://scenes/enemies/red.tscn" id="1_oxeat"]
 [ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy_data.gd" id="2_2f2g6"]
 
 [resource]
 script = ExtResource("2_2f2g6")
 model = ExtResource("1_oxeat")
 health = 10
-move_speed = 40.0
+move_speed = 38.0
 attack_type = 0
 attack_damage = 25
 attack_range = 2.4

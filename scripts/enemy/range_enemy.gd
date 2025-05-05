@@ -3,7 +3,7 @@ extends Enemy
 @export var projectile_scene: PackedScene
 
 func _perform_attack():
-	if player and position.distance_to(player.global_position) < data.attack_range:
+	if player and position.distance_to(player.global_position) < attack_range:
 		var projectile = projectile_scene.instantiate()
 		projectile.global_position = global_position
 		projectile.direction = (player.global_position - global_position).normalized()

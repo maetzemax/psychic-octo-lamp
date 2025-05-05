@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cyqk75rlypn34"]
 
-[ext_resource type="PackedScene" uid="uid://bwdi2dnsr37j5" path="res://scenes/purple.tscn" id="1_i4wnj"]
+[ext_resource type="PackedScene" uid="uid://bwdi2dnsr37j5" path="res://scenes/enemies/purple.tscn" id="1_i4wnj"]
 [ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy_data.gd" id="2_hx80a"]
 
 [resource]

@@ -12,10 +12,10 @@ move_speed = 40.0
 metadata/_custom_type_script = "uid://j8e3k25sl211"
 
 [sub_resource type="QuadMesh" id="QuadMesh_3vyb7"]
-size = Vector2(2, 2)
+size = Vector2(32, 32)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
-size = Vector2(2, 2)
+size = Vector2(32, 32)
 
 [sub_resource type="Resource" id="Resource_dqkch"]
 script = ExtResource("3_dqkch")
@@ -41,7 +41,6 @@ mesh = SubResource("QuadMesh_3vyb7")
 shape = SubResource("RectangleShape2D_sugp2")
 
 [node name="Camera2D" type="Camera2D" parent="."]
-zoom = Vector2(15, 15)
 position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 

@@ -4,7 +4,7 @@ extends Node2D
 @export var world: Node2D
 @export var player: CharacterBody2D
 
-var wave_size = randi_range(1, 3)
+var wave_size = randi_range(3, 7)
 var spawn_timer: TimerHelper = TimerHelper.new()
 
 func _ready():
@@ -49,15 +49,15 @@ func _spawn_enemies():
 	var selected_rect = valid_spawn_rects[randi() % valid_spawn_rects.size()]
 
 	var center_x = randf_range(
-		selected_rect.position.x + 15, selected_rect.position.x + selected_rect.size.x - 15
+		selected_rect.position.x + 32, selected_rect.position.x + selected_rect.size.x - 32
 	)
 	var center_y = randf_range(
-		selected_rect.position.y + 15, selected_rect.position.y + selected_rect.size.y - 15
+		selected_rect.position.y + 32, selected_rect.position.y + selected_rect.size.y - 32
 	)
 	var group_center = Vector2(center_x, center_y)
 
 	for i in wave_size:
-		var offset = Vector2(randf_range(-5, 5), randf_range(-5, 5))
+		var offset = Vector2(randf_range(-128, 128), randf_range(-128, 128))
 		var spawn_pos = group_center + offset
 
 		var enemy_data = enemies[randi() % enemies.size()]
