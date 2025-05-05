@@ -9,4 +9,4 @@ const DEATH = 3
 const LEVEL_UP = 4
 const SHOP = 5
 
-static var active_game_state: GAMESTATE = MAIN_MENU
+static var active_game_state: GAMESTATE = FIGHTING

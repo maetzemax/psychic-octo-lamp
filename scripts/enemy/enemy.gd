@@ -30,9 +30,12 @@ func _ready():
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	add_child(cooldown_timer)
 
-func _physics_process(_delta: float):
+func _physics_process(_delta: float):	
 	if not player:
 		queue_free()
+		return
+		
+	if GameManager.active_game_state != GameManager.FIGHTING:
 		return
 		
 	look_at(player.global_position)
@@ -57,7 +60,7 @@ func _physics_process(_delta: float):
 			var direction = (target_position - global_position).normalized()
 			velocity = direction.normalized() * move_speed
 
-			if position.distance_to(player.global_position) > attack_range / 4:
+			if position.distance_to(player.global_position) > attack_range / 2:
 				move_and_slide()
 
 func _start_attack():
