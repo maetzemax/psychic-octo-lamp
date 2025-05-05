@@ -31,7 +31,7 @@ func _physics_process(_delta: float):
 	look_at(player.global_position)
 
 	if position.distance_to(player.global_position) < data.attack_range and can_attack:
-		_start_attack()	
+		_start_attack()
 	
 	match data.attack_type:
 		ATTACK.MEELE:
@@ -50,7 +50,7 @@ func _physics_process(_delta: float):
 			var direction = (target_position - global_position).normalized()
 			velocity = direction.normalized() * data.move_speed
 
-			if position.distance_to(player.global_position) > data.attack_range:
+			if position.distance_to(player.global_position) > data.attack_range or position.distance_to(player.global_position) < 20:
 				move_and_slide()
 
 func _start_attack():

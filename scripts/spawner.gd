@@ -4,7 +4,7 @@ extends Node2D
 @export var world: Node2D
 @export var player: CharacterBody2D
 
-var wave_size = randi_range(1, 3)
+var wave_size = randi_range(3, 7)
 var spawn_timer: TimerHelper = TimerHelper.new()
 
 func _ready():
