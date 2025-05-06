@@ -2,9 +2,9 @@ extends Resource
 
 class_name WeaponData
 
-@export var attack_type: ATTACK.TYPE = ATTACK.MEELE
-@export var attack_damage: int
-@export var attack_speed: float = 1.0
-@export var attack_range: float
+@export var attack_class: ATTACK.CLASS = ATTACK.RANGE
+@export var attack_damage: int = 10
+@export var attack_speed: float = 5.0
+@export var attack_range: float = 50
 
-@export var projectile_speed: float
+@export var projectile_speed: float = 40

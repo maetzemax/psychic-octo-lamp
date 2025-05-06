@@ -5,6 +5,7 @@ class_name Enemy
 @export var data: EnemyData
 
 var movement_service: MovementService
+var enemy_attack_service: EnemyAttackService
 
 var player: CharacterBody2D
 var is_attacking = false
@@ -19,9 +20,11 @@ func _ready():
 	player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
 	movement_service = MovementService.new(self)
-	movement_service.enemy = self
 	movement_service.target_pos_reached.connect(_on_target_position_reached)
 	add_child(movement_service)
+	
+	enemy_attack_service = EnemyAttackService.new(self)
+	add_child(enemy_attack_service)
 	
 	attack_range = data.attack_range * 10
 

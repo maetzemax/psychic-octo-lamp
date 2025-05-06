@@ -13,6 +13,7 @@ class_name EnemyData
 @export var move_speed: float = 5.0
 
 @export_category("Attack")
+@export var attack_class: ATTACK.CLASS
 @export var attack_type: ATTACK.TYPE
 @export var attack_damage: int
 @export var attack_range: float

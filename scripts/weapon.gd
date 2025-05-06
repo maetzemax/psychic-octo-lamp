@@ -23,7 +23,7 @@ func attack(target_position: Vector2):
 	if attack_cooldown:
 		return
 
-	match data.attack_type:
+	match data.attack_class:
 		ATTACK.MEELE:
 			_perform_melee_attack(target_position)
 		ATTACK.RANGE:
