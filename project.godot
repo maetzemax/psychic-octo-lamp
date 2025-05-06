@@ -30,6 +30,7 @@ window/stretch/aspect="keep_height"
 [global_group]
 
 Player=""
+World=""
 
 [layer_names]
 

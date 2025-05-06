@@ -21,7 +21,7 @@ size = Vector2(1025, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(1025, 1)
 
-[node name="World" type="Node2D"]
+[node name="World" type="Node2D" groups=["World"]]
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 mesh = SubResource("BoxMesh_sgp6g")

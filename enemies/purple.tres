@@ -6,8 +6,9 @@
 [resource]
 script = ExtResource("2_hx80a")
 model = ExtResource("1_i4wnj")
-health = 100
-move_speed = 20.0
+health = 70
+move_type = 1
+move_speed = 10.0
 attack_type = 1
 attack_damage = 15
 attack_range = 30.0
