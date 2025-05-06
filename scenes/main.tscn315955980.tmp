@@ -4,8 +4,8 @@
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/spawner.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy/enemy_data.gd" id="4_tbgi4"]
-[ext_resource type="Resource" uid="uid://bboxq3qqb2wg0" path="res://enemies/purple.tres" id="5_tefeu"]
 [ext_resource type="PackedScene" uid="uid://cd6ljea27d8rb" path="res://scenes/ui/ui.tscn" id="6_tefeu"]
+[ext_resource type="Resource" uid="uid://cyqk75rlypn34" path="res://enemies/purple.tres" id="7_tipki"]
 
 [node name="Main" type="Node2D"]
 
@@ -15,7 +15,7 @@
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player")]
 script = ExtResource("3_jyhfs")
-enemies = Array[ExtResource("4_tbgi4")]([ExtResource("5_tefeu")])
+enemies = Array[ExtResource("4_tbgi4")]([ExtResource("7_tipki")])
 world = NodePath("../World")
 player = NodePath("../Player")
 

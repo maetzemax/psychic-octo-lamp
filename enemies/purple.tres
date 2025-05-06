@@ -1,17 +1,16 @@
-[gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://cyqk75rlypn34"]
+[gd_resource type="Resource" script_class="RangedEnemyData" load_steps=3 format=3 uid="uid://bboxq3qqb2wg0"]
 
 [ext_resource type="PackedScene" uid="uid://bwdi2dnsr37j5" path="res://scenes/enemies/purple.tscn" id="1_i4wnj"]
-[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy_data.gd" id="2_hx80a"]
+[ext_resource type="Script" uid="uid://ba5armmji875s" path="res://models/enemy/ranged_enemy_data.gd" id="2_i4wnj"]
 
 [resource]
-script = ExtResource("2_hx80a")
-model = ExtResource("1_i4wnj")
-health = 70
-move_type = 1
-move_speed = 10.0
-attack_class = 1
-attack_damage = 15
-attack_range = 30.0
-attack_speed = 1.0
+script = ExtResource("2_i4wnj")
 projectile_speed = 30.0
-metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
+model = ExtResource("1_i4wnj")
+health = 100
+move_type = 2
+move_speed = 40.0
+attack_damage = 10
+attack_range = 50.0
+attack_speed = 1.0
+metadata/_custom_type_script = "uid://ba5armmji875s"

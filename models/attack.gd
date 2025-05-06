@@ -12,19 +12,17 @@ enum CLASS {
 const DEFAULT = 0
 
 ## MELEE ##
-const ZICK_ZACK = 1
-const DASH = 2
-const CHARGE = 3
+const DASH = 1
+const CHARGE = 2
 
 ## RANGE ##
-const BURST = 4
-const STAR = 5
+const BURST = 3
+const STAR = 4
 
 enum TYPE {
 	DEFAULT = 0,
-	ZICK_ZACK = 1,
-	DASH = 2,
-	CHARGE = 3,
-	BURST = 4,
-	STAR = 5
+	DASH = 1,
+	CHARGE = 2,
+	BURST = 3,
+	STAR = 4
 }

@@ -26,6 +26,8 @@ func resolve_movement(type: MOVEMENT.TYPE):
 	match type:
 		MOVEMENT.FOLLOW:
 			follow()
+		MOVEMENT.ZICK_ZACK:
+			follow()
 		MOVEMENT.RANDOM:
 			random_movement()
 		MOVEMENT.SEARCH:
