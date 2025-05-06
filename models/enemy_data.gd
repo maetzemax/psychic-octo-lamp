@@ -7,6 +7,9 @@ class_name EnemyData
 
 @export_category("Base")
 @export var health: int
+
+@export_category("Movement")
+@export var move_type: MOVEMENT.TYPE
 @export var move_speed: float = 5.0
 
 @export_category("Attack")

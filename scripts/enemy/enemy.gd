@@ -4,6 +4,8 @@ class_name Enemy
 
 @export var data: EnemyData
 
+var movement_service: MovementService
+
 var player: CharacterBody2D
 var is_attacking = false
 var can_attack = true
@@ -17,6 +19,10 @@ var move_speed
 var target_position: Vector2
 
 func _ready():
+	movement_service = MovementService.new(self)
+	movement_service.enemy = self
+	add_child(movement_service)
+	
 	player = get_tree().get_first_node_in_group("Player") as CharacterBody2D
 	
 	attack_range = data.attack_range * 10
@@ -38,16 +44,14 @@ func _physics_process(_delta: float):
 	if GameManager.active_game_state != GameManager.FIGHTING:
 		return
 		
-	look_at(player.global_position)
+	
 
 	if position.distance_to(player.global_position) < attack_range and can_attack:
 		_start_attack()
 	
 	match data.attack_type:
 		ATTACK.MEELE:
-			var direction = (player.global_position - global_position).normalized()
-			velocity = direction.normalized() * move_speed
-			move_and_slide()
+			movement_service.resolve_movement(data.move_type)
 		ATTACK.RANGE:
 			var random_position: Vector2 = Vector2(
 				randi_range(-500, 500),
