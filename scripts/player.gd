@@ -2,6 +2,8 @@ extends CharacterBody2D
 
 @export var data: PlayerData
 
+@onready var hitbox: Area2D = $Hitbox
+
 var move_speed
 
 var _w: bool

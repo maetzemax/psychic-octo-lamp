@@ -8,10 +8,8 @@ var is_attacking = false
 var can_attack = true
 
 var enemy: Enemy
-var attack_range: float
 var target_pos: Vector2
 
-var attack_timer: TimerHelper = TimerHelper.new()
 var cooldown_timer: TimerHelper = TimerHelper.new()
 
 func _init(enemy: Enemy):
@@ -19,10 +17,6 @@ func _init(enemy: Enemy):
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
-
-	attack_timer.wait_time = 1.0 / enemy.data.attack_speed
-	attack_timer.timeout.connect(_on_attack_timer_timeout)
-	add_child(attack_timer)
 
 	cooldown_timer.wait_time = 1.0 / enemy.data.attack_speed
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
@@ -34,38 +28,47 @@ func resolve_attack(type: ATTACK.ABILITY):
 
 	match type:
 		ATTACK.DEFAULT_MELEE:
-			default_melee_attack()
+			_default_melee_attack()
 		ATTACK.DEFAULT_RANGE:
-			default_range_attack()
+			_default_range_attack()
 		ATTACK.DASH:
-			dash_attack()
+			_dash_attack()
 		ATTACK.CHARGE:
-			charge_attack()
+			_charge_attack()
 		ATTACK.BURST:
-			burst_attack()
+			_burst_attack()
 		ATTACK.STAR:
-			star_attack()
+			_star_attack()
 
-func default_melee_attack():
-	pass
-
-func default_range_attack():
-	pass
+func _default_melee_attack():
+	if not _colliding_with_player() or not can_attack:
+		return
 	
-func dash_attack():
-	pass
-	
-func charge_attack():
-	pass
-
-func burst_attack():
-	pass
-	
-func star_attack():
-	pass
-
-func _on_attack_timer_timeout():
+	can_attack = false
 	cooldown_timer.start()
+	player.reduce_health(enemy.data.attack_damage)
+
+func _default_range_attack():
+	pass
+
+func _dash_attack():
+	pass
+
+func _charge_attack():
+	pass
+
+func _burst_attack():
+	pass
+	
+func _star_attack():
+	pass
+	
+func _colliding_with_player() -> bool:
+	for i in range(enemy.hitbox.get_overlapping_areas().size()):
+		var collision = enemy.hitbox.get_overlapping_areas()[i]
+		if collision and collision.get_parent().is_in_group("Player"):
+			return true
+	return false
 
 func _on_cooldown_timer_timeout():
 	can_attack = true
