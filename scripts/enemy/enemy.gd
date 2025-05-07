@@ -4,6 +4,8 @@ class_name Enemy
 
 @export var data: EnemyData
 
+@onready var hitbox: Area2D = $Hitbox
+
 var movement_service: MovementService
 var enemy_attack_service: EnemyAttackService
 

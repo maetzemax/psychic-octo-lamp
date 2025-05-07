@@ -7,10 +7,9 @@
 script = ExtResource("1_exds7")
 model = ExtResource("1_xmgot")
 health = 100
+move_type = 0
 move_speed = 20.0
-attack_type = 0
+attack_ability = 0
 attack_damage = 15
-attack_range = 5.0
 attack_speed = 1.0
-projectile_speed = 30.0
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"

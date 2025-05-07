@@ -18,7 +18,5 @@ script = ExtResource("3_jyhfs")
 enemies = Array[ExtResource("4_tbgi4")]([ExtResource("5_tefeu")])
 world = NodePath("../World")
 player = NodePath("../Player")
-min_enemy_count = 2
-max_enemy_count = 3
 
 [node name="UI" parent="." instance=ExtResource("6_tefeu")]
