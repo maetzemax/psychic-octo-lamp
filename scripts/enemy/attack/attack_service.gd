@@ -2,8 +2,6 @@ extends Node2D
 
 class_name EnemyAttackService
 
-signal on_attack
-
 var player: CharacterBody2D
 
 var is_attacking = false
@@ -40,7 +38,7 @@ func resolve_attack(type: ATTACK.TYPE):
 	match type:
 		ATTACK.DEFAULT:
 			if position.distance_to(player.global_position) < attack_range and can_attack:
-				_start_attack()
+				pass
 		ATTACK.DASH:
 			pass
 		ATTACK.CHARGE:
@@ -49,14 +47,8 @@ func resolve_attack(type: ATTACK.TYPE):
 			pass
 		ATTACK.STAR:
 			pass
-
-func _start_attack():
-	is_attacking = true
-	can_attack = false
-	attack_timer.start()
-
+	
 func _on_attack_timer_timeout():
-	on_attack.emit()
 	cooldown_timer.start()
 
 func _on_cooldown_timer_timeout():

@@ -17,7 +17,6 @@ func _ready():
 	add_child(movement_service)
 	
 	enemy_attack_service = EnemyAttackService.new(self)
-	enemy_attack_service.on_attack.connect(_perform_attack)
 	add_child(enemy_attack_service)
 
 func _physics_process(_delta: float):	
@@ -30,9 +29,6 @@ func _physics_process(_delta: float):
 
 	enemy_attack_service.resolve_attack(0)
 	movement_service.resolve_movement(data.move_type)
-	
-func _perform_attack():
-	pass
 
 func reduce_health(amount: int):
 	data.health -= amount
