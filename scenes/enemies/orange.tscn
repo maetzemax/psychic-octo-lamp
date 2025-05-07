@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://ca8s8gmlovpny"]
 
-[ext_resource type="Script" uid="uid://cnjpy6bv5edyw" path="res://scripts/enemy/melee_enemy.gd" id="1_fxgmd"]
+[ext_resource type="Script" uid="uid://bj5ofhicbsont" path="res://scripts/enemy/enemy.gd" id="1_aguw6"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
 size = Vector2(48, 48)
@@ -11,7 +11,7 @@ size = Vector2(48, 48)
 [node name="Orange" type="CharacterBody2D"]
 collision_layer = 4
 collision_mask = 21
-script = ExtResource("1_fxgmd")
+script = ExtResource("1_aguw6")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 modulate = Color(0.745035, 0.400557, 0.142407, 1)

@@ -16,12 +16,9 @@ var cooldown_timer: TimerHelper = TimerHelper.new()
 
 func _init(enemy: Enemy):
 	self.enemy = enemy
-	attack_range = enemy.data.attack_range * 10
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
-	
-	attack_range = enemy.data.attack_range * 10
 
 	attack_timer.wait_time = 1.0 / enemy.data.attack_speed
 	attack_timer.timeout.connect(_on_attack_timer_timeout)
@@ -31,23 +28,42 @@ func _ready():
 	cooldown_timer.timeout.connect(_on_cooldown_timer_timeout)
 	add_child(cooldown_timer)
 	
-func resolve_attack(type: ATTACK.TYPE):
+func resolve_attack(type: ATTACK.ABILITY):
 	if not player or not enemy:
 		return
 
 	match type:
-		ATTACK.DEFAULT:
-			if position.distance_to(player.global_position) < attack_range and can_attack:
-				pass
+		ATTACK.DEFAULT_MELEE:
+			default_melee_attack()
+		ATTACK.DEFAULT_RANGE:
+			default_range_attack()
 		ATTACK.DASH:
-			pass
+			dash_attack()
 		ATTACK.CHARGE:
-			pass
+			charge_attack()
 		ATTACK.BURST:
-			pass
+			burst_attack()
 		ATTACK.STAR:
-			pass
+			star_attack()
+
+func default_melee_attack():
+	pass
+
+func default_range_attack():
+	pass
 	
+func dash_attack():
+	pass
+	
+func charge_attack():
+	pass
+
+func burst_attack():
+	pass
+	
+func star_attack():
+	pass
+
 func _on_attack_timer_timeout():
 	cooldown_timer.start()
 

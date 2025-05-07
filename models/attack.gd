@@ -1,28 +1,17 @@
 class_name ATTACK
 
-const MEELE = 0
-const RANGE = 1
+const DEFAULT_MELEE = 0
+const DEFAULT_RANGE = 1
+const DASH = 2
+const CHARGE = 3
+const BURST = 4
+const STAR = 5
 
-enum CLASS {
-	MEELE = 0,
-	RANGE = 1
-}
-
-## BOTH ##
-const DEFAULT = 0
-
-## MELEE ##
-const DASH = 1
-const CHARGE = 2
-
-## RANGE ##
-const BURST = 3
-const STAR = 4
-
-enum TYPE {
-	DEFAULT = 0,
-	DASH = 1,
-	CHARGE = 2,
-	BURST = 3,
-	STAR = 4
+enum ABILITY {
+	DEFAULT_MELEE = 0,
+	DEFAULT_RANGE = 1,
+	DASH = 2,
+	CHARGE = 3,
+	BURST = 4,
+	STAR = 5
 }

@@ -19,7 +19,7 @@ func _ready():
 	enemy_attack_service = EnemyAttackService.new(self)
 	add_child(enemy_attack_service)
 
-func _physics_process(_delta: float):	
+func _physics_process(_delta: float):
 	if not player:
 		queue_free()
 		return
@@ -27,7 +27,7 @@ func _physics_process(_delta: float):
 	if GameManager.active_game_state != GameManager.FIGHTING:
 		return
 
-	enemy_attack_service.resolve_attack(0)
+	enemy_attack_service.resolve_attack(data.attack_ability)
 	movement_service.resolve_movement(data.move_type)
 
 func reduce_health(amount: int):
