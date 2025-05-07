@@ -4,13 +4,16 @@ extends Node2D
 @export var world: Node2D
 @export var player: CharacterBody2D
 
-var wave_size = randi_range(1, 1)
+@export var min_enemy_count: int = 1
+@export var max_enemy_count: int = 5
+@export var spawn_cooldown: float = 5
+
 var spawn_timer: TimerHelper = TimerHelper.new()
 
 func _ready():
 	randomize()
 	spawn_timer.autostart = true
-	spawn_timer.wait_time = 5
+	spawn_timer.wait_time = spawn_cooldown
 	spawn_timer.one_shot = false
 	spawn_timer.timeout.connect(_on_timeout)
 	add_child(spawn_timer)
@@ -56,7 +59,7 @@ func _spawn_enemies():
 	)
 	var group_center = Vector2(center_x, center_y)
 
-	for i in wave_size:
+	for i in range(randi_range(min_enemy_count, max_enemy_count)):
 		var offset = Vector2(randf_range(-128, 128), randf_range(-128, 128))
 		var spawn_pos = group_center + offset
 

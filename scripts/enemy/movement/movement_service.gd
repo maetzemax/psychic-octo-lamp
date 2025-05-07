@@ -6,8 +6,8 @@ signal target_pos_reached
 
 var world_mesh: MeshInstance2D
 var player: CharacterBody2D
-
 var enemy: Enemy
+
 var move_speed: float
 var target_pos: Vector2
 
@@ -25,24 +25,27 @@ func resolve_movement(type: MOVEMENT.TYPE):
 
 	match type:
 		MOVEMENT.FOLLOW:
-			follow()
+			_follow_movement()
 		MOVEMENT.ZICK_ZACK:
-			follow()
+			_zick_zack_movement()
 		MOVEMENT.RANDOM:
-			random_movement()
+			_random_movement()
 		MOVEMENT.SEARCH:
-			search()
+			_search_movement()
 
-func follow():
-	var direction = (player.global_position - global_position).normalized()	
+func _follow_movement():
+	var direction = (player.global_position - global_position).normalized()
 	enemy.velocity = direction.normalized() * move_speed
 	enemy.move_and_slide()
 	enemy.look_at(player.global_position)
-	
-func random_movement():
+
+func _zick_zack_movement():
+	pass
+
+func _random_movement():
 	if global_position.distance_to(target_pos) < 10 or target_pos == Vector2.ZERO:
 		var world_size = (world_mesh.mesh.size.x - 32) / 2
-	
+
 		var random_pos: Vector2 = Vector2(
 			randi_range(-world_size, world_size),
 			randi_range(-world_size, world_size)
@@ -62,7 +65,7 @@ func random_movement():
 		
 	enemy.look_at(player.global_position)
 
-func search():
+func _search_movement():
 	pass
 
 func _colliding_with_player() -> bool:
