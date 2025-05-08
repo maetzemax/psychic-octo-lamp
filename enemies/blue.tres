@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_exds7")
 model = ExtResource("1_xmgot")
-health = 100
+health = 50
 move_type = 0
 move_speed = 20.0
 attack_ability = 0

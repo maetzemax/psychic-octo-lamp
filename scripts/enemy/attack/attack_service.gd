@@ -38,28 +38,6 @@ func _ready():
 #endregion
 	
 #region Attack
-func _physics_process(delta: float):
-	if not player or not enemy or not can_attack:
-		return
-	
-	match enemy.data.attack_ability:
-		ATTACK.DASH:
-			if is_dashing and not can_dash:
-				if global_position.distance_to(dash_position) < 16 and not dash_position_reached:
-					dash_position_reached = true
-					await get_tree().create_timer(DASH_FINISH_TIME).timeout
-					is_dashing = false
-					dash_position_reached = false
-					cooldown_timer.start()
-				elif _colliding_with_player():
-					is_dashing = false
-					cooldown_timer.start()
-				else:
-					enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * DASH_VELOCITY, delta)
-					enemy.move_and_slide()
-		_:
-			return
-
 func resolve_attack(type: ATTACK.ABILITY):
 	if not player or not enemy or not can_attack:
 		return
@@ -129,7 +107,33 @@ func _burst_attack():
 func _star_attack():
 	pass
 #endregion
+
+#region Physics
+func _physics_process(delta: float):
+	if not player or not enemy or not can_attack:
+		return
 	
+	match enemy.data.attack_ability:
+		ATTACK.DASH:
+			_dash_physics(delta)
+		_:
+			return
+
+func _dash_physics(delta: float):
+	if is_dashing and not can_dash:
+		if global_position.distance_to(dash_position) < 16 and not dash_position_reached:
+			dash_position_reached = true
+			await get_tree().create_timer(DASH_FINISH_TIME).timeout
+			is_dashing = false
+			cooldown_timer.start()
+		elif _colliding_with_player():
+			is_dashing = false
+			cooldown_timer.start()
+		else:
+			enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * DASH_VELOCITY, delta)
+			enemy.move_and_slide()
+#endregion
+
 #region Helper
 func _colliding_with_player() -> bool:
 	for i in range(enemy.hitbox.get_overlapping_areas().size()):
@@ -141,4 +145,5 @@ func _colliding_with_player() -> bool:
 func _on_cooldown_timer_timeout():
 	can_attack = true
 	can_dash = true
+	dash_position_reached = false
 #endregion
