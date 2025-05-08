@@ -36,8 +36,15 @@ func resolve_movement(type: MOVEMENT.TYPE):
 func _follow_movement():
 	var direction = (player.global_position - global_position).normalized()
 	enemy.velocity = direction.normalized() * move_speed
-	enemy.move_and_slide()
 	enemy.look_at(player.global_position)
+	
+	if enemy.data is RangedEnemyData:
+		var ranged_data = enemy.data as RangedEnemyData
+		
+		if global_position.distance_to(player.global_position) > ranged_data.attack_range * 10:
+			enemy.move_and_slide()
+	else:
+		enemy.move_and_slide()
 
 func _zick_zack_movement():
 	pass
