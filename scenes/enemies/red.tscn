@@ -10,7 +10,6 @@ size = Vector2(16, 16)
 
 [node name="Red" type="CharacterBody2D"]
 collision_layer = 4
-collision_mask = 21
 script = ExtResource("1_46ry2")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
@@ -19,5 +18,12 @@ z_index = 1
 y_sort_enabled = true
 mesh = SubResource("QuadMesh_oahj1")
 
-[node name="Collsion" type="CollisionShape2D" parent="."]
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 18
+
+[node name="Collsion" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_sugp2")

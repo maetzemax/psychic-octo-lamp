@@ -11,6 +11,10 @@ var enemy: Enemy
 var is_attacking = false
 var can_attack = true
 
+var dash_position = false
+var is_dashing = false
+var can_dash = false
+
 var cooldown_timer: TimerHelper = TimerHelper.new()
 
 func _init(enemy: Enemy):
@@ -25,6 +29,29 @@ func _ready():
 #endregion
 	
 #region Attack
+func _physics_process(delta: float):
+	if not player or not enemy or not can_attack:
+		return
+	
+	match enemy.data.attack_ability:
+		ATTACK.DASH:
+			if can_dash:
+				cooldown_timer.paused = true
+				
+				if global_position.distance_to(dash_position) < 16 or _colliding_with_player():
+					is_dashing = false
+					can_dash = false
+					cooldown_timer.paused = false
+					return
+				else:
+					enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * 20, delta)
+					enemy.move_and_slide()
+			else:
+				cooldown_timer.paused = false
+				return
+		_:
+			return
+
 func resolve_attack(type: ATTACK.ABILITY):
 	if not player or not enemy or not can_attack:
 		return
@@ -73,7 +100,17 @@ func _default_range_attack():
 		push_warning("Expected RangedEnemyData, got something else.")
 
 func _dash_attack():
-	pass
+	if global_position.distance_to(player.global_position) < 200 and not is_dashing and not can_dash:
+		dash_position = player.global_position
+		is_dashing = true
+		cooldown_timer.start()
+		
+		await get_tree().create_timer(0.2).timeout
+		
+		can_dash = true
+		
+	if is_dashing:
+		_default_melee_attack()
 
 func _charge_attack():
 	pass

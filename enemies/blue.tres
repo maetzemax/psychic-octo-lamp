@@ -10,6 +10,6 @@ health = 100
 move_type = 0
 move_speed = 20.0
 attack_ability = 0
-attack_damage = 15
+attack_damage = 10
 attack_speed = 1.0
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
