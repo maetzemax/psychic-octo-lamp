@@ -26,7 +26,7 @@ func _ready():
 	
 #region Attack
 func resolve_attack(type: ATTACK.ABILITY):
-	if not player or not enemy:
+	if not player or not enemy or not can_attack:
 		return
 
 	match type:
@@ -44,7 +44,7 @@ func resolve_attack(type: ATTACK.ABILITY):
 			_star_attack()
 
 func _default_melee_attack():
-	if not _colliding_with_player() or not can_attack:
+	if not _colliding_with_player():
 		return
 	
 	on_attack.emit()
@@ -53,7 +53,24 @@ func _default_melee_attack():
 	player.reduce_health(enemy.data.attack_damage)
 
 func _default_range_attack():
-	pass
+	if enemy.data is RangedEnemyData:
+		var ranged_data = enemy.data as RangedEnemyData
+		if global_position.distance_to(player.global_position) < ranged_data.attack_range * 10:
+			var projectile = ranged_data.projectile_scene.instantiate()
+			projectile.global_position = global_position
+			projectile.direction = (player.global_position - global_position).normalized()
+			projectile.attack_damage = ranged_data.attack_damage
+			projectile.collision_mask = 1 | 2
+			projectile.collision_layer = 32
+			projectile.color = Color.GOLD
+			projectile.projectile_speed = ranged_data.projectile_speed
+			get_tree().current_scene.add_child(projectile)
+			
+			on_attack.emit()
+			can_attack = false
+			cooldown_timer.start()
+	else:
+		push_warning("Expected RangedEnemyData, got something else.")
 
 func _dash_attack():
 	pass
