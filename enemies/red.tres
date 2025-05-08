@@ -11,5 +11,5 @@ move_type = 0
 move_speed = 25.0
 attack_ability = 2
 attack_damage = 25
-attack_speed = 0.2
+attack_speed = 0.5
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"

@@ -8,12 +8,21 @@ signal on_attack
 var player: CharacterBody2D
 var enemy: Enemy
 
+## ENEMY
 var is_attacking = false
 var can_attack = true
 
-var dash_position = false
+## DASH
+const DASH_RANGE = 200
+const DASH_VELOCITY = 20
+const DASH_FINISH_TIME = 0.1
+const DASH_CHARGE_TIME = 0.2
+
+var dash_position: Vector2
+var dash_position_reached = false
+
 var is_dashing = false
-var can_dash = false
+var can_dash = true
 
 var cooldown_timer: TimerHelper = TimerHelper.new()
 
@@ -35,20 +44,19 @@ func _physics_process(delta: float):
 	
 	match enemy.data.attack_ability:
 		ATTACK.DASH:
-			if can_dash:
-				cooldown_timer.paused = true
-				
-				if global_position.distance_to(dash_position) < 16 or _colliding_with_player():
+			if is_dashing and not can_dash:
+				if global_position.distance_to(dash_position) < 16 and not dash_position_reached:
+					dash_position_reached = true
+					await get_tree().create_timer(DASH_FINISH_TIME).timeout
 					is_dashing = false
-					can_dash = false
-					cooldown_timer.paused = false
-					return
+					dash_position_reached = false
+					cooldown_timer.start()
+				elif _colliding_with_player():
+					is_dashing = false
+					cooldown_timer.start()
 				else:
-					enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * 20, delta)
+					enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * DASH_VELOCITY, delta)
 					enemy.move_and_slide()
-			else:
-				cooldown_timer.paused = false
-				return
 		_:
 			return
 
@@ -100,14 +108,14 @@ func _default_range_attack():
 		push_warning("Expected RangedEnemyData, got something else.")
 
 func _dash_attack():
-	if global_position.distance_to(player.global_position) < 200 and not is_dashing and not can_dash:
-		dash_position = player.global_position
+	if global_position.distance_to(player.global_position) < DASH_RANGE and can_dash and not is_dashing:
 		is_dashing = true
-		cooldown_timer.start()
+		dash_position = player.global_position
 		
-		await get_tree().create_timer(0.2).timeout
+		await get_tree().create_timer(DASH_CHARGE_TIME).timeout
 		
-		can_dash = true
+		cooldown_timer.stop()
+		can_dash = false
 		
 	if is_dashing:
 		_default_melee_attack()
@@ -132,4 +140,5 @@ func _colliding_with_player() -> bool:
 
 func _on_cooldown_timer_timeout():
 	can_attack = true
+	can_dash = true
 #endregion

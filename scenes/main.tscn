@@ -1,10 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=7 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/world.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/spawner.gd" id="3_jyhfs"]
 [ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy/enemy_data.gd" id="4_tbgi4"]
-[ext_resource type="Resource" uid="uid://y2fy4jdj2jxr" path="res://enemies/blue.tres" id="6_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://cd6ljea27d8rb" path="res://scenes/ui/ui.tscn" id="6_tefeu"]
 [ext_resource type="Resource" uid="uid://hwtowdcwvtj6" path="res://enemies/red.tres" id="6_tipki"]
 
@@ -16,10 +15,11 @@
 
 [node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player")]
 script = ExtResource("3_jyhfs")
-enemies = Array[ExtResource("4_tbgi4")]([ExtResource("6_o6xl0"), ExtResource("6_tipki")])
+enemies = Array[ExtResource("4_tbgi4")]([ExtResource("6_tipki")])
 world = NodePath("../World")
 player = NodePath("../Player")
 min_enemy_count = 2
-max_enemy_count = 3
+max_enemy_count = 2
+spawn_cooldown = 2.0
 
 [node name="UI" parent="." instance=ExtResource("6_tefeu")]

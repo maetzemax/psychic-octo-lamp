@@ -28,7 +28,7 @@ func _physics_process(_delta: float):
 		
 	if GameManager.active_game_state != GameManager.FIGHTING:
 		return
-
+	
 	if not enemy_attack_service.is_dashing:
 		movement_service.resolve_movement(data.move_type)
 	
