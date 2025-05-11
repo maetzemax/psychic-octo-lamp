@@ -20,6 +20,12 @@ func _ready():
 	velocity = direction * projectile_speed * 10
 
 func _physics_process(delta: float):
+	if GameManager.active_game_state == GameManager.PAUSE:
+		timer.paused = true
+		return
+	
+	timer.paused = false
+	
 	global_position += velocity * delta
 
 	var space_state = get_world_2d().direct_space_state

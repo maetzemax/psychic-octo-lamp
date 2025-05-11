@@ -8,21 +8,14 @@ signal on_attack
 var player: CharacterBody2D
 var enemy: Enemy
 
-## ENEMY
-var is_attacking = false
 var can_attack = true
 
-## DASH
 const DASH_RANGE = 200
-const DASH_VELOCITY = 20
-const DASH_FINISH_TIME = 0.1
-const DASH_CHARGE_TIME = 0.2
+const DASH_VELOCITY = 500
 
-var dash_position: Vector2
-var dash_position_reached = false
-
+var dash_direction: Vector2
 var is_dashing = false
-var can_dash = true
+var can_dash = false
 
 var cooldown_timer: TimerHelper = TimerHelper.new()
 
@@ -39,7 +32,7 @@ func _ready():
 	
 #region Attack
 func resolve_attack(type: ATTACK.ABILITY):
-	if not player or not enemy or not can_attack:
+	if not player or not enemy:
 		return
 
 	match type:
@@ -60,18 +53,19 @@ func _default_melee_attack():
 	if not _colliding_with_player():
 		return
 	
-	on_attack.emit()
-	can_attack = false
-	cooldown_timer.start()
-	player.reduce_health(enemy.data.attack_damage)
+	if can_attack:
+		on_attack.emit()
+		can_attack = false
+		cooldown_timer.start()
+		player.reduce_health(enemy.data.attack_damage)
 
 func _default_range_attack():
-	if enemy.data is RangedEnemyData:
+	if enemy.data is RangedEnemyData and can_attack:
 		var ranged_data = enemy.data as RangedEnemyData
 		if global_position.distance_to(player.global_position) < ranged_data.attack_range * 10:
 			var projectile = ranged_data.projectile_scene.instantiate()
 			projectile.global_position = global_position
-			projectile.direction = (player.global_position - global_position).normalized()
+			projectile.direction = (player.global_position - enemy.global_position).normalized()
 			projectile.attack_damage = ranged_data.attack_damage
 			projectile.collision_mask = 1 | 2
 			projectile.collision_layer = 32
@@ -86,16 +80,15 @@ func _default_range_attack():
 		push_warning("Expected RangedEnemyData, got something else.")
 
 func _dash_attack():
-	if global_position.distance_to(player.global_position) < DASH_RANGE and can_dash and not is_dashing:
-		is_dashing = true
-		dash_position = player.global_position
-		
-		await get_tree().create_timer(DASH_CHARGE_TIME).timeout
-		
-		cooldown_timer.stop()
+	if enemy.global_position.distance_to(player.global_position) <= DASH_RANGE and not is_dashing and can_attack:
+		dash_direction = (player.global_position - enemy.global_position).normalized() * DASH_VELOCITY
+		can_dash = true
+
+	if enemy.global_position.distance_to(player.global_position) > DASH_RANGE and is_dashing:
 		can_dash = false
+		is_dashing = false
 		
-	if is_dashing:
+	if is_dashing and can_attack:
 		_default_melee_attack()
 
 func _charge_attack():
@@ -110,7 +103,10 @@ func _star_attack():
 
 #region Physics
 func _physics_process(delta: float):
-	if not player or not enemy or not can_attack:
+	if GameManager.active_game_state == GameManager.PAUSE:
+		return
+
+	if not player or not enemy:
 		return
 	
 	match enemy.data.attack_ability:
@@ -120,18 +116,11 @@ func _physics_process(delta: float):
 			return
 
 func _dash_physics(delta: float):
-	if is_dashing and not can_dash:
-		if global_position.distance_to(dash_position) < 16 and not dash_position_reached:
-			dash_position_reached = true
-			await get_tree().create_timer(DASH_FINISH_TIME).timeout
-			is_dashing = false
-			cooldown_timer.start()
-		elif _colliding_with_player():
-			is_dashing = false
-			cooldown_timer.start()
-		else:
-			enemy.velocity = lerp(enemy.velocity, (dash_position - global_position) * DASH_VELOCITY, delta)
-			enemy.move_and_slide()
+	if can_dash and not is_dashing:
+		is_dashing = true
+		enemy.velocity = dash_direction
+	elif is_dashing:
+		enemy.move_and_slide()
 #endregion
 
 #region Helper
@@ -144,6 +133,4 @@ func _colliding_with_player() -> bool:
 
 func _on_cooldown_timer_timeout():
 	can_attack = true
-	can_dash = true
-	dash_position_reached = false
 #endregion

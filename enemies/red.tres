@@ -7,8 +7,8 @@
 script = ExtResource("2_2f2g6")
 model = ExtResource("1_oxeat")
 health = 15
-move_type = 2
-move_speed = 25.0
+move_type = 0
+move_speed = 20.0
 attack_ability = 2
 attack_damage = 25
 attack_speed = 0.5
