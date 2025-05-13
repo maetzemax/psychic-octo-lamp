@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://dwpmv5r263le0"]
 
-[ext_resource type="Script" uid="uid://db7276flinhtr" path="res://scripts/material.gd" id="1_kubu7"]
+[ext_resource type="Script" uid="uid://db7276flinhtr" path="res://scripts/material/material.gd" id="1_kubu7"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_kubu7"]
 radial_velocity_min = -16.2

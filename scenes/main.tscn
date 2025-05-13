@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=10 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/world.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
@@ -9,7 +9,6 @@
 [ext_resource type="Resource" uid="uid://hwtowdcwvtj6" path="res://enemies/red.tres" id="6_tipki"]
 [ext_resource type="Resource" uid="uid://duec4i5a3tqda" path="res://enemies/orange.tres" id="7_choun"]
 [ext_resource type="Resource" uid="uid://bboxq3qqb2wg0" path="res://enemies/purple.tres" id="8_ya4ey"]
-[ext_resource type="PackedScene" uid="uid://dwpmv5r263le0" path="res://scenes/assets/material.tscn" id="10_choun"]
 
 [node name="Main" type="Node2D"]
 
@@ -26,6 +25,3 @@ max_enemy_count = 1
 spawn_cooldown = 2.0
 
 [node name="UI" parent="." instance=ExtResource("6_tefeu")]
-
-[node name="Material" parent="." instance=ExtResource("10_choun")]
-position = Vector2(147, 224)

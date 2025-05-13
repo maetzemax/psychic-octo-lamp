@@ -22,7 +22,7 @@ script = ExtResource("3_dqkch")
 attack_damage = 10
 attack_speed = 5.0
 attack_range = 50.0
-projectile_speed = 50.0
+projectile_speed = 100.0
 metadata/_custom_type_script = "uid://ci7s0iyainkp8"
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
