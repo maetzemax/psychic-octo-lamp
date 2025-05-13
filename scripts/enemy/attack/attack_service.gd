@@ -76,8 +76,6 @@ func _default_range_attack():
 			on_attack.emit()
 			can_attack = false
 			cooldown_timer.start()
-	else:
-		push_warning("Expected RangedEnemyData, got something else.")
 
 func _dash_attack():
 	if enemy.global_position.distance_to(player.global_position) <= DASH_RANGE and not is_dashing and can_attack:
@@ -115,7 +113,7 @@ func _physics_process(delta: float):
 		_:
 			return
 
-func _dash_physics(delta: float):
+func _dash_physics(_delta: float):
 	if can_dash and not is_dashing:
 		is_dashing = true
 		enemy.velocity = dash_direction

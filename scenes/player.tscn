@@ -26,7 +26,7 @@ projectile_speed = 50.0
 metadata/_custom_type_script = "uid://ci7s0iyainkp8"
 
 [node name="Player" type="CharacterBody2D" groups=["Player"]]
-y_sort_enabled = true
+z_index = 10
 collision_layer = 2
 script = ExtResource("1_3vyb7")
 data = SubResource("Resource_qlg0r")

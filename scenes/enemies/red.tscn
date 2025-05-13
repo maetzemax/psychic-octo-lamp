@@ -9,13 +9,12 @@ size = Vector2(16, 16)
 size = Vector2(18, 18)
 
 [node name="Red" type="CharacterBody2D"]
+z_index = 5
 collision_layer = 4
 script = ExtResource("1_46ry2")
 
 [node name="Mesh" type="MeshInstance2D" parent="."]
 modulate = Color(0.90694, 0.153081, 0.276976, 1)
-z_index = 1
-y_sort_enabled = true
 mesh = SubResource("QuadMesh_oahj1")
 
 [node name="PhysicsCollision" type="CollisionShape2D" parent="."]

@@ -40,6 +40,10 @@ func reduce_health(amount: int):
 		die()
 
 func die():
+	var material_scene = preload("res://scenes/assets/material.tscn")
+	var material_instance = material_scene.instantiate()
+	material_instance.global_position = global_position
+	get_tree().current_scene.call_deferred("add_child", material_instance)
 	queue_free()
 
 func _on_target_position_reached():
