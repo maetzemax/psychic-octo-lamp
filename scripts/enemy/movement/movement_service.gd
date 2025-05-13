@@ -6,8 +6,8 @@ signal target_pos_reached
 
 var world_mesh: MeshInstance2D
 var player: CharacterBody2D
-
 var enemy: Enemy
+
 var move_speed: float
 var target_pos: Vector2
 
@@ -20,27 +20,39 @@ func _ready():
 	world_mesh = get_tree().get_first_node_in_group("World").get_node("Mesh")
 	
 func resolve_movement(type: MOVEMENT.TYPE):
-	if not player or not enemy:
+	if not player or not enemy or _colliding_with_player():
 		return
 
 	match type:
 		MOVEMENT.FOLLOW:
-			follow()
+			_follow_movement()
+		MOVEMENT.ZICK_ZACK:
+			_zick_zack_movement()
 		MOVEMENT.RANDOM:
-			random_movement()
+			_random_movement()
 		MOVEMENT.SEARCH:
-			search()
+			_search_movement()
 
-func follow():	
-	var direction = (player.global_position - global_position).normalized()	
+func _follow_movement():
+	var direction = (player.global_position - global_position).normalized()
 	enemy.velocity = direction.normalized() * move_speed
-	enemy.move_and_slide()
 	enemy.look_at(player.global_position)
 	
-func random_movement():	
+	if enemy.data is RangedEnemyData:
+		var ranged_data = enemy.data as RangedEnemyData
+		
+		if global_position.distance_to(player.global_position) > ranged_data.attack_range * 10:
+			enemy.move_and_slide()
+	else:
+		enemy.move_and_slide()
+
+func _zick_zack_movement():
+	pass
+
+func _random_movement():
 	if global_position.distance_to(target_pos) < 10 or target_pos == Vector2.ZERO:
 		var world_size = (world_mesh.mesh.size.x - 32) / 2
-	
+
 		var random_pos: Vector2 = Vector2(
 			randi_range(-world_size, world_size),
 			randi_range(-world_size, world_size)
@@ -60,5 +72,12 @@ func random_movement():
 		
 	enemy.look_at(player.global_position)
 
-func search():
+func _search_movement():
 	pass
+
+func _colliding_with_player() -> bool:
+	for i in range(enemy.hitbox.get_overlapping_areas().size()):
+		var collision = enemy.hitbox.get_overlapping_areas()[i]
+		if collision and collision.get_parent().is_in_group("Player"):
+			return true
+	return false

@@ -23,11 +23,11 @@ func attack(target_position: Vector2):
 	if attack_cooldown:
 		return
 
-	match data.attack_type:
-		ATTACK.MEELE:
-			_perform_melee_attack(target_position)
-		ATTACK.RANGE:
-			_perform_ranged_attack(target_position)
+	#match data.attack_class:
+		#ATTACK.MEELE:
+			#_perform_melee_attack(target_position)
+		#ATTACK.RANGE:
+	_perform_ranged_attack(target_position)
 
 	attack_cooldown = true
 	attack_timer.start()

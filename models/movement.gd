@@ -2,10 +2,12 @@ class_name MOVEMENT
 
 enum TYPE {
 	FOLLOW = 0,
-	RANDOM = 1,
-	SEARCH = 2
+	ZICK_ZACK = 1,
+	RANDOM = 2,
+	SEARCH = 3
 }
 
 const FOLLOW = 0
-const RANDOM = 1
-const SEARCH = 2
+const ZICK_ZACK = 1
+const RANDOM = 2
+const SEARCH = 3

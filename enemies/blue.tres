@@ -1,16 +1,15 @@
 [gd_resource type="Resource" script_class="EnemyData" load_steps=3 format=3 uid="uid://y2fy4jdj2jxr"]
 
-[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy_data.gd" id="1_exds7"]
+[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy/enemy_data.gd" id="1_exds7"]
 [ext_resource type="PackedScene" uid="uid://5pslo1bqarlr" path="res://scenes/enemies/blue.tscn" id="1_xmgot"]
 
 [resource]
 script = ExtResource("1_exds7")
 model = ExtResource("1_xmgot")
-health = 100
+health = 50
+move_type = 0
 move_speed = 20.0
-attack_type = 0
-attack_damage = 15
-attack_range = 5.0
+attack_ability = 0
+attack_damage = 10
 attack_speed = 1.0
-projectile_speed = 30.0
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
