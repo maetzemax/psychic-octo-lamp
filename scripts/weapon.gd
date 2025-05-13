@@ -52,7 +52,7 @@ func _perform_melee_attack(target_position: Vector2):
 			result.collider.reduce_health(data.damage)
 
 func _perform_ranged_attack(target_position: Vector2):
-	var projectile_scene = preload("res://scenes/projectile.tscn")
+	var projectile_scene = preload("res://scenes/assets/projectile.tscn")
 	var projectile = projectile_scene.instantiate()
 	projectile.global_position = global_position
 	projectile.direction = (target_position - global_position).normalized()

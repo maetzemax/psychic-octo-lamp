@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://cd6ljea27d8rb"]
+[gd_scene load_steps=4 format=3 uid="uid://cd6ljea27d8rb"]
 
 [ext_resource type="Script" uid="uid://ce1wxqej866kx" path="res://scripts/ui/ui.gd" id="1_u7n8c"]
 
@@ -23,12 +23,6 @@ corner_radius_top_left = 8
 corner_radius_top_right = 8
 corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_u7n8c"]
-bg_color = Color(0.6, 0.6, 0.6, 0.5)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_f5cxw"]
-bg_color = Color(1, 0, 0.0166664, 1)
 
 [node name="UI" type="CanvasLayer"]
 script = ExtResource("1_u7n8c")
@@ -66,7 +60,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 64
-text = "You've died!"
+text = "YOU'VE DIED!"
 
 [node name="TryAgain" type="Button" parent="DeathScreen/VBoxContainer"]
 layout_mode = 2
@@ -163,25 +157,24 @@ color = Color(0.2, 0.2, 0.2, 0.313726)
 visible = false
 z_index = 1
 layout_mode = 3
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-grow_horizontal = 2
+anchors_preset = 0
 
-[node name="ProgressBar" type="ProgressBar" parent="IngameOverlay"]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -256.0
-offset_top = 20.0
-offset_right = 256.0
-offset_bottom = 52.0
-grow_horizontal = 2
-theme_override_styles/background = SubResource("StyleBoxFlat_u7n8c")
-theme_override_styles/fill = SubResource("StyleBoxFlat_f5cxw")
-value = 25.2
-show_percentage = false
+[node name="VBoxContainer" type="VBoxContainer" parent="IngameOverlay"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Health" type="Label" parent="IngameOverlay/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "HEALTH: 0"
+
+[node name="Material" type="Label" parent="IngameOverlay/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "MATERIAL: 0"
 
 [connection signal="pressed" from="DeathScreen/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Return" to="." method="_on_return_pressed"]
