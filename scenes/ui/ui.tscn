@@ -176,11 +176,74 @@ theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "MATERIAL: 0"
 
+[node name="Wave" type="Label" parent="IngameOverlay/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 32
+text = "WAVE: 1"
+
 [node name="WaveTime" type="Label" parent="IngameOverlay/VBoxContainer"]
 layout_mode = 2
 theme_override_constants/outline_size = 2
 theme_override_font_sizes/font_size = 32
 text = "TIME LEFT:  30"
 
+[node name="RoundEndScreen" type="Control" parent="."]
+z_index = 1
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="RoundEndScreen"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="Label" type="Label" parent="RoundEndScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 2
+theme_override_font_sizes/font_size = 64
+text = "SURVIVED!"
+
+[node name="NextRound" type="Button" parent="RoundEndScreen/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_aac20")
+text = "NEXT ROUND"
+
+[node name="ColorRect" type="ColorRect" parent="RoundEndScreen"]
+z_index = -1
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -800.0
+offset_top = -450.0
+offset_right = 800.0
+offset_bottom = 450.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.2, 0.2, 0.2, 0.313726)
+
 [connection signal="pressed" from="DeathScreen/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
 [connection signal="pressed" from="PauseMenu/VBoxContainer/Return" to="." method="_on_return_pressed"]
+[connection signal="pressed" from="RoundEndScreen/VBoxContainer/NextRound" to="." method="_on_next_round_pressed"]

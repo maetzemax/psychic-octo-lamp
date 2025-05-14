@@ -1,12 +1,65 @@
-[gd_scene load_steps=8 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=18 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/world.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/spawner.gd" id="3_jyhfs"]
 [ext_resource type="PackedScene" uid="uid://cd6ljea27d8rb" path="res://scenes/ui/ui.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy/enemy_data.gd" id="8_choun"]
+[ext_resource type="PackedScene" uid="uid://5pslo1bqarlr" path="res://scenes/enemies/blue.tscn" id="8_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://dw8l8du03gagd" path="res://scenes/enemies/red.tscn" id="9_trceg"]
+[ext_resource type="PackedScene" uid="uid://bwdi2dnsr37j5" path="res://scenes/enemies/purple.tscn" id="10_a8y0u"]
 [ext_resource type="Script" uid="uid://bggrjuka5tnjm" path="res://scripts/waves/wave_service.gd" id="10_eb6dy"]
+[ext_resource type="PackedScene" uid="uid://c01vsgvy22nq1" path="res://scenes/assets/projectile.tscn" id="11_jkv2x"]
 [ext_resource type="Script" uid="uid://kbyxa06mqqre" path="res://models/wave_data.gd" id="11_trceg"]
-[ext_resource type="Resource" uid="uid://7talqw0d0yd8" path="res://resources/waves/melee_easy.tres" id="12_a8y0u"]
+[ext_resource type="Script" uid="uid://ba5armmji875s" path="res://models/enemy/ranged_enemy_data.gd" id="12_jbj1t"]
+
+[sub_resource type="Resource" id="Resource_muem4"]
+script = ExtResource("8_choun")
+model = ExtResource("8_eb6dy")
+health = 50
+move_type = 0
+move_speed = 20.0
+attack_ability = 0
+attack_damage = 10
+attack_speed = 1.0
+metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
+
+[sub_resource type="Resource" id="Resource_dp3eg"]
+script = ExtResource("11_trceg")
+enemies = Array[ExtResource("8_choun")]([SubResource("Resource_muem4")])
+wave_time = 20
+metadata/_custom_type_script = "uid://kbyxa06mqqre"
+
+[sub_resource type="Resource" id="Resource_0ld40"]
+script = ExtResource("8_choun")
+model = ExtResource("9_trceg")
+health = 15
+move_type = 0
+move_speed = 20.0
+attack_ability = 2
+attack_damage = 25
+attack_speed = 0.5
+metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
+
+[sub_resource type="Resource" id="Resource_gqmmt"]
+script = ExtResource("12_jbj1t")
+attack_range = 50.0
+projectile_scene = ExtResource("11_jkv2x")
+projectile_speed = 30.0
+model = ExtResource("10_a8y0u")
+health = 50
+move_type = 2
+move_speed = 15.0
+attack_ability = 1
+attack_damage = 10
+attack_speed = 0.5
+metadata/_custom_type_script = "uid://ba5armmji875s"
+
+[sub_resource type="Resource" id="Resource_a8y0u"]
+script = ExtResource("11_trceg")
+enemies = Array[ExtResource("8_choun")]([SubResource("Resource_0ld40"), SubResource("Resource_gqmmt")])
+wave_time = 20
+metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
 [node name="Main" type="Node2D"]
 
@@ -22,10 +75,10 @@ wave_service = NodePath("../WaveService")
 max_enemy_count = 1
 spawn_cooldown = 2.0
 
-[node name="UI" parent="." instance=ExtResource("6_tefeu")]
+[node name="UI" parent="." node_paths=PackedStringArray("wave_service") instance=ExtResource("6_tefeu")]
+wave_service = NodePath("../WaveService")
 
 [node name="WaveService" type="Node" parent="."]
 script = ExtResource("10_eb6dy")
-scaling = 2.0
-waves = Array[ExtResource("11_trceg")]([ExtResource("12_a8y0u")])
+waves = Array[ExtResource("11_trceg")]([SubResource("Resource_dp3eg"), SubResource("Resource_a8y0u")])
 metadata/_custom_type_script = "uid://bggrjuka5tnjm"

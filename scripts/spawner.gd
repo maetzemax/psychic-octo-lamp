@@ -24,7 +24,7 @@ func _on_timeout():
 	_spawn_enemies()
 
 func _spawn_enemies():
-	if player == null:
+	if !player or !wave_service.active_wave:
 		return
 		
 	enemies = wave_service.active_wave.enemies

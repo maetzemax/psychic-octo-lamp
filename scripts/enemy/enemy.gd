@@ -22,7 +22,7 @@ func _ready():
 	add_child(enemy_attack_service)
 
 func _physics_process(_delta: float):
-	if not player:
+	if not player or GameManager.active_game_state == GameManager.ROUND_END:
 		queue_free()
 		return
 		
