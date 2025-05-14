@@ -1,14 +1,12 @@
-[gd_scene load_steps=10 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=8 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/world.tscn" id="1_sugp2"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
 [ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/spawner.gd" id="3_jyhfs"]
-[ext_resource type="Script" uid="uid://d0c8cfw7e8kp0" path="res://models/enemy/enemy_data.gd" id="4_tbgi4"]
-[ext_resource type="Resource" uid="uid://y2fy4jdj2jxr" path="res://enemies/blue.tres" id="6_85g3d"]
 [ext_resource type="PackedScene" uid="uid://cd6ljea27d8rb" path="res://scenes/ui/ui.tscn" id="6_tefeu"]
-[ext_resource type="Resource" uid="uid://hwtowdcwvtj6" path="res://enemies/red.tres" id="6_tipki"]
-[ext_resource type="Resource" uid="uid://duec4i5a3tqda" path="res://enemies/orange.tres" id="7_choun"]
-[ext_resource type="Resource" uid="uid://bboxq3qqb2wg0" path="res://enemies/purple.tres" id="8_ya4ey"]
+[ext_resource type="Script" uid="uid://bggrjuka5tnjm" path="res://scripts/waves/wave_service.gd" id="10_eb6dy"]
+[ext_resource type="Script" uid="uid://kbyxa06mqqre" path="res://models/wave_data.gd" id="11_trceg"]
+[ext_resource type="Resource" uid="uid://7talqw0d0yd8" path="res://resources/waves/melee_easy.tres" id="12_a8y0u"]
 
 [node name="Main" type="Node2D"]
 
@@ -16,12 +14,18 @@
 
 [node name="Player" parent="." instance=ExtResource("2_sugp2")]
 
-[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player")]
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player", "wave_service")]
 script = ExtResource("3_jyhfs")
-enemies = Array[ExtResource("4_tbgi4")]([ExtResource("6_tipki"), ExtResource("6_85g3d"), ExtResource("7_choun"), ExtResource("8_ya4ey")])
 world = NodePath("../World")
 player = NodePath("../Player")
+wave_service = NodePath("../WaveService")
 max_enemy_count = 1
 spawn_cooldown = 2.0
 
 [node name="UI" parent="." instance=ExtResource("6_tefeu")]
+
+[node name="WaveService" type="Node" parent="."]
+script = ExtResource("10_eb6dy")
+scaling = 2.0
+waves = Array[ExtResource("11_trceg")]([ExtResource("12_a8y0u")])
+metadata/_custom_type_script = "uid://bggrjuka5tnjm"

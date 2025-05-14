@@ -6,6 +6,7 @@ extends CanvasLayer
 @onready var ingame_overlay: Control = $IngameOverlay
 var health_label: Label
 var material_label: Label
+var wave_time_label: Label
 
 var player: CharacterBody2D
 
@@ -13,6 +14,7 @@ func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	health_label = ingame_overlay.get_node("VBoxContainer/Health")
 	material_label = ingame_overlay.get_node("VBoxContainer/Material")
+	wave_time_label = ingame_overlay.get_node("VBoxContainer/WaveTime")
 
 func _process(_delta: float):
 	match GameManager.active_game_state:
@@ -31,6 +33,7 @@ func _process(_delta: float):
 			
 			health_label.text = "HEALTH: " + str(player.data.health)
 			material_label.text = "MATERIAL: " + str(MaterialService.count)
+			wave_time_label.text = "TIME LEFT: " + str(WaveService.current_wave_time)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:

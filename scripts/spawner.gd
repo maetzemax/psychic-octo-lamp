@@ -1,14 +1,16 @@
 extends Node2D
 
-@export var enemies: Array[EnemyData]
 @export var world: Node2D
 @export var player: CharacterBody2D
+
+@export var wave_service: WaveService
 
 @export var min_enemy_count: int = 1
 @export var max_enemy_count: int = 5
 @export var spawn_cooldown: float = 5
 
 var spawn_timer: TimerHelper = TimerHelper.new()
+var enemies: Array[EnemyData]
 
 func _ready():
 	randomize()
@@ -24,6 +26,8 @@ func _on_timeout():
 func _spawn_enemies():
 	if player == null:
 		return
+		
+	enemies = wave_service.active_wave.enemies
 	
 	var spawn_areas := world.get_node("SpawnAreas")
 	var valid_spawn_rects: Array[Rect2] = []
