@@ -1,0 +1,32 @@
+[gd_scene load_steps=8 format=3 uid="uid://couo32eywatkc"]
+
+[ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/world.tscn" id="1_sugp2"]
+[ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player.tscn" id="2_sugp2"]
+[ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/spawner.gd" id="3_jyhfs"]
+[ext_resource type="PackedScene" uid="uid://cd6ljea27d8rb" path="res://scenes/ui/ui.tscn" id="6_tefeu"]
+[ext_resource type="Script" uid="uid://bggrjuka5tnjm" path="res://scripts/waves/wave_service.gd" id="10_eb6dy"]
+[ext_resource type="Script" uid="uid://kbyxa06mqqre" path="res://models/wave_data.gd" id="11_trceg"]
+[ext_resource type="Resource" uid="uid://7talqw0d0yd8" path="res://resources/waves/melee_easy.tres" id="12_a8y0u"]
+
+[node name="Main" type="Node2D"]
+
+[node name="World" parent="." instance=ExtResource("1_sugp2")]
+
+[node name="Player" parent="." instance=ExtResource("2_sugp2")]
+
+[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player", "wave_service")]
+script = ExtResource("3_jyhfs")
+world = NodePath("../World")
+player = NodePath("../Player")
+wave_service = NodePath("../WaveService")
+max_enemy_count = 1
+spawn_cooldown = 2.0
+
+[node name="UI" parent="." node_paths=PackedStringArray("wave_service") instance=ExtResource("6_tefeu")]
+wave_service = NodePath("../WaveService")
+
+[node name="WaveService" type="Node" parent="."]
+script = ExtResource("10_eb6dy")
+scaling = 2.0
+waves = Array[ExtResource("11_trceg")]([ExtResource("12_a8y0u")])
+metadata/_custom_type_script = "uid://bggrjuka5tnjm"
