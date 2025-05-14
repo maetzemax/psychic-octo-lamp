@@ -19,8 +19,8 @@ func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 	health_label = ingame_overlay.get_node("VBoxContainer/Health")
 	material_label = ingame_overlay.get_node("VBoxContainer/Material")
-	wave_label = ingame_overlay.get_node("VBoxContainer/Wave")
-	wave_time_label = ingame_overlay.get_node("VBoxContainer/WaveTime")
+	wave_label = ingame_overlay.get_node("Wave")
+	wave_time_label = ingame_overlay.get_node("WaveTime")
 
 func _process(_delta: float):
 	match GameManager.active_game_state:
@@ -48,7 +48,7 @@ func _process(_delta: float):
 			health_label.text = "HEALTH: " + str(player.data.health)
 			material_label.text = "MATERIAL: " + str(MaterialService.count)
 			wave_label.text = "WAVE: " + str(wave_service.current_wave)
-			wave_time_label.text = "TIME LEFT: " + str(wave_service.current_wave_time)
+			wave_time_label.text = str(wave_service.current_wave_time)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -58,6 +58,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_try_again_pressed() -> void:
 	GameManager.active_game_state = GameManager.FIGHTING
+	MaterialService.reset()
 	wave_service.reset()
 	get_tree().reload_current_scene()
 

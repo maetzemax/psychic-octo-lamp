@@ -9,3 +9,6 @@ static func add_material(amount: int):
 
 static func reduce_material(amount: int):
 	count = max(count - amount, 0)
+
+static func reset():
+	count = 0

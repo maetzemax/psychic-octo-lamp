@@ -5,12 +5,13 @@ extends Node2D
 
 @export var wave_service: WaveService
 
-@export var min_enemy_count: int = 1
-@export var max_enemy_count: int = 5
 @export var spawn_cooldown: float = 5
 
 var spawn_timer: TimerHelper = TimerHelper.new()
 var enemies: Array[EnemyData]
+
+var min_enemy_amount: int = 1
+var max_enemy_amount: int = 5
 
 func _ready():
 	randomize()
@@ -28,6 +29,8 @@ func _spawn_enemies():
 		return
 		
 	enemies = wave_service.active_wave.enemies
+	min_enemy_amount = wave_service.active_wave.min_spawn_amount
+	max_enemy_amount = wave_service.active_wave.max_spawn_amount
 	
 	var spawn_areas := world.get_node("SpawnAreas")
 	var valid_spawn_rects: Array[Rect2] = []
@@ -63,7 +66,7 @@ func _spawn_enemies():
 	)
 	var group_center = Vector2(center_x, center_y)
 
-	for i in range(randi_range(min_enemy_count, max_enemy_count)):
+	for i in range(randi_range(min_enemy_amount, max_enemy_amount)):
 		var offset = Vector2(randf_range(-128, 128), randf_range(-128, 128))
 		var spawn_pos = group_center + offset
 
