@@ -57,21 +57,6 @@ func _process(_delta: float):
 				wave_label.text = "WAVE: " + str(wave_service.current_wave)
 				wave_time_label.text = str(wave_service.current_wave_time)
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event:
-		match GameManager.active_game_state:
-			GameManager.FIGHTING:
-				if Input.is_action_just_pressed("ui_cancel"):
-					GameManager.active_game_state = GameManager.PAUSE
-			GameManager.PAUSE:
-				if Input.is_action_just_pressed("ui_cancel"):
-					GameManager.active_game_state = GameManager.FIGHTING
-					
-		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
-			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-		else:
-			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-
 func _on_try_again_pressed() -> void:
 	GameManager.active_game_state = GameManager.FIGHTING
 	MaterialService.reset()

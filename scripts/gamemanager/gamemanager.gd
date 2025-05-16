@@ -9,3 +9,18 @@ const DEATH = 3
 const ROUND_END = 4
 
 static var active_game_state: GAMESTATE = FIGHTING
+
+func _unhandled_input(event: InputEvent):
+	if event:
+		match GameManager.active_game_state:
+			GameManager.FIGHTING:
+				if Input.is_action_just_pressed("ui_cancel"):
+					GameManager.active_game_state = GameManager.PAUSE
+			GameManager.PAUSE:
+				if Input.is_action_just_pressed("ui_cancel"):
+					GameManager.active_game_state = GameManager.FIGHTING
+					
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
