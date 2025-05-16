@@ -10,23 +10,23 @@ const LAYER_ENEMY_RANGED = 1 << 3
 
 var attack_cooldown := false
 var attack_timer: TimerHelper = TimerHelper.new()
+var enemy_detection: EnemyDetection
 
 func _ready():
 	attack_timer.wait_time = 1.0 / data.attack_speed
 	attack_timer.timeout.connect(_on_attack_timeout)
 	add_child(attack_timer)
+	enemy_detection = EnemyDetection.new(self)
 	
 func _physics_process(_delta: float):
-	attack(get_global_mouse_position())
+	var nearest_enemy = enemy_detection.get_nearest_enemy()
+	if nearest_enemy:
+		attack(nearest_enemy.global_position)
 
 func attack(target_position: Vector2):
 	if attack_cooldown:
 		return
 
-	#match data.attack_class:
-		#ATTACK.MEELE:
-			#_perform_melee_attack(target_position)
-		#ATTACK.RANGE:
 	_perform_ranged_attack(target_position)
 
 	attack_cooldown = true
@@ -34,22 +34,6 @@ func attack(target_position: Vector2):
 
 func _on_attack_timeout():
 	attack_cooldown = false
-
-func _perform_melee_attack(target_position: Vector2):
-	var hit_area = RectangleShape2D.new()
-	hit_area.extents = Vector2(data.attack_range, data.attack_range)
-
-	var space_state = get_world_2d().direct_space_state
-	var query = PhysicsShapeQueryParameters2D.new()
-	query.shape = hit_area
-	query.transform.origin = global_position.direction_to(target_position) * data.attack_range + global_position
-	query.collide_with_areas = true
-	query.collision_mask = 2
-
-	var results = space_state.intersect_shape(query)
-	for result in results:
-		if result.collider.has_method("reduce_health"):
-			result.collider.reduce_health(data.damage)
 
 func _perform_ranged_attack(target_position: Vector2):
 	var projectile_scene = preload("res://scenes/assets/projectile.tscn")

@@ -51,8 +51,8 @@ func _process(_delta: float):
 			if player:
 				health_label.text = "HEALTH: " + str(player.data.health)
 			
-			if MaterialService.count:
-				material_label.text = "MATERIAL: " + str(MaterialService.count)
+			if MaterialService:
+				material_label.text = "MATERIAL: " + str(MaterialService.get_materials())
 			
 			if wave_service:
 				wave_label.text = "WAVE: " + str(wave_service.current_wave)

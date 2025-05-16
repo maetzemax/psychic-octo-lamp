@@ -19,6 +19,8 @@ config/icon="res://icon.svg"
 [autoload]
 
 GameManager="*res://scripts/gamemanager/gamemanager.gd"
+InputManager="*res://scripts/input_manager.gd"
+MaterialService="*res://scripts/material/material_service.gd"
 
 [display]
 
@@ -32,6 +34,7 @@ window/stretch/aspect="keep_height"
 
 Player=""
 World=""
+Enemy=""
 
 [input]
 

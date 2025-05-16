@@ -1,14 +1,25 @@
 extends Node
 
-class_name MaterialService
+signal materials_changed(new_count: int)
 
-static var count: int = 0
+var _materials: int = 0
 
-static func add_material(amount: int):
-	count += amount
+func get_materials() -> int:
+	return _materials
 
-static func reduce_material(amount: int):
-	count = max(count - amount, 0)
+func add_materials(amount: int) -> void:
+	if amount <= 0:
+		return
+	_materials += amount
+	materials_changed.emit(_materials)
 
-static func reset():
-	count = 0
+func reduce_materials(amount: int) -> bool:
+	if amount <= 0 or amount > _materials:
+		return false
+	_materials = max(_materials - amount, 0) 
+	materials_changed.emit(_materials)
+	return true
+
+func reset() -> void:
+	_materials = 0
+	materials_changed.emit(_materials)

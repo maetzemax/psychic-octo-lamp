@@ -1,43 +1,36 @@
 extends CharacterBody2D
 
 @export var data: PlayerData
-
 @onready var hitbox: Area2D = $Hitbox
 
 var move_speed
-
-var _up: bool
-var _down: bool
-var _left: bool
-var _right: bool
-
-var _direction = Vector2(0.0, 0.0)
+var _direction = Vector2.ZERO
+var enemy_detection: EnemyDetection
 
 func _ready():
 	move_speed = data.move_speed * 10
+	enemy_detection = EnemyDetection.new(self)
+	
+	var input_manager = get_node("/root/InputManager")
+	input_manager.movement_input_changed.connect(_on_movement_input_changed)
 
 func _physics_process(_delta: float):
 	if GameManager.active_game_state != GameManager.FIGHTING:
 		return
 
-	look_at(get_global_mouse_position())
+	var nearest_enemy = enemy_detection.get_nearest_enemy()
+	if nearest_enemy:
+		var target_angle = (nearest_enemy.global_position - global_position).angle()
+		rotation = lerp_angle(rotation, target_angle, 0.2)
+
 	_update_movement()
 
 func _update_movement():
-	_direction = Vector2(
-		(_right as float) - (_left as float),
-		(_down as float) - (_up as float)
-	)
-	
 	velocity = _direction.normalized() * move_speed
 	move_and_slide()
 
-func _input(event: InputEvent):
-	if event:
-		_up = Input.is_action_pressed("walk_up")
-		_down = Input.is_action_pressed("walk_down")
-		_left = Input.is_action_pressed("walk_left")
-		_right = Input.is_action_pressed("walk_right")
+func _on_movement_input_changed(direction: Vector2):
+	_direction = direction
 
 func reduce_health(amount: int):
 	data.health -= amount
