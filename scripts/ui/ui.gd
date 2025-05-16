@@ -29,6 +29,7 @@ func _process(_delta: float):
 			pause_menu.visible = false
 			ingame_overlay.visible = false
 			round_end_menu.visible = false
+			death_menu.get_node("VBoxContainer/TryAgain").grab_focus()
 		GameManager.PAUSE:
 			death_menu.visible = false
 			pause_menu.visible = true
