@@ -22,7 +22,7 @@ func _ready():
 	wave_label = ingame_overlay.get_node("Wave")
 	wave_time_label = ingame_overlay.get_node("WaveTime")
 
-func _process(_delta: float):
+func _process(_delta: float):	
 	match GameManager.active_game_state:
 		GameManager.DEATH:
 			death_menu.visible = true
@@ -34,27 +34,43 @@ func _process(_delta: float):
 			pause_menu.visible = true
 			ingame_overlay.visible = false
 			round_end_menu.visible = false
+			pause_menu.get_node("VBoxContainer/Return").grab_focus()
 		GameManager.ROUND_END:
 			death_menu.visible = false
 			pause_menu.visible = false
 			ingame_overlay.visible = false
 			round_end_menu.visible = true
+			round_end_menu.get_node("NextRound").grab_focus()
 		GameManager.FIGHTING:
 			death_menu.visible = false
 			pause_menu.visible = false
 			ingame_overlay.visible = true
 			round_end_menu.visible = false
 			
-			health_label.text = "HEALTH: " + str(player.data.health)
-			material_label.text = "MATERIAL: " + str(MaterialService.count)
-			wave_label.text = "WAVE: " + str(wave_service.current_wave)
-			wave_time_label.text = str(wave_service.current_wave_time)
+			if player:
+				health_label.text = "HEALTH: " + str(player.data.health)
+			
+			if MaterialService.count:
+				material_label.text = "MATERIAL: " + str(MaterialService.count)
+			
+			if wave_service:
+				wave_label.text = "WAVE: " + str(wave_service.current_wave)
+				wave_time_label.text = str(wave_service.current_wave_time)
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		match event.keycode:
-			KEY_ESCAPE:
-				GameManager.active_game_state = GameManager.PAUSE
+	if event:
+		match GameManager.active_game_state:
+			GameManager.FIGHTING:
+				if Input.is_action_just_pressed("ui_cancel"):
+					GameManager.active_game_state = GameManager.PAUSE
+			GameManager.PAUSE:
+				if Input.is_action_just_pressed("ui_cancel"):
+					GameManager.active_game_state = GameManager.FIGHTING
+					
+		if event is InputEventJoypadButton or event is InputEventJoypadMotion:
+			Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		else:
+			Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 
 func _on_try_again_pressed() -> void:
 	GameManager.active_game_state = GameManager.FIGHTING

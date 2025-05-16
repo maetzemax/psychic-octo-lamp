@@ -6,10 +6,10 @@ extends CharacterBody2D
 
 var move_speed
 
-var _w: bool
-var _s: bool
-var _a: bool
-var _d: bool
+var _up: bool
+var _down: bool
+var _left: bool
+var _right: bool
 
 var _direction = Vector2(0.0, 0.0)
 
@@ -25,24 +25,19 @@ func _physics_process(_delta: float):
 
 func _update_movement():
 	_direction = Vector2(
-		(_d as float) - (_a as float),
-		(_s as float) - (_w as float)
+		(_right as float) - (_left as float),
+		(_down as float) - (_up as float)
 	)
 	
 	velocity = _direction.normalized() * move_speed
 	move_and_slide()
 
 func _input(event: InputEvent):
-	if event is InputEventKey:
-		match event.keycode:
-			KEY_W:
-				_w = event.pressed
-			KEY_S:
-				_s = event.pressed
-			KEY_A:
-				_a = event.pressed
-			KEY_D:
-				_d = event.pressed
+	if event:
+		_up = Input.is_action_pressed("walk_up")
+		_down = Input.is_action_pressed("walk_down")
+		_left = Input.is_action_pressed("walk_left")
+		_right = Input.is_action_pressed("walk_right")
 
 func reduce_health(amount: int):
 	data.health -= amount
