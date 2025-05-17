@@ -79,7 +79,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "0"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Material" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Material"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -114,7 +114,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "100"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Health" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Health"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -149,7 +149,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "0"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Armor" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Armor"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -184,7 +184,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackDamage" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackDamage"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -219,7 +219,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackSpeed" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackSpeed"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -254,7 +254,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackRange" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackRange"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
@@ -289,7 +289,7 @@ theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "40"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/MovementSpeed" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/MovementSpeed"]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
