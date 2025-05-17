@@ -6,6 +6,8 @@ extends CanvasLayer
 @export var wave_service: WaveService
 @export var wave_end_ui_scene: PackedScene
 
+@export var died_ui_scene: PackedScene
+
 func _ready():
 	_on_game_state_changed(GameManager.ACTIVE)
 	GameManager.on_active_game_state_changed.connect(_on_game_state_changed)
@@ -21,7 +23,8 @@ func _on_game_state_changed(state: GameManager.GAMESTATE):
 			var paused_ui: Control = paused_ui_scene.instantiate()
 			add_child(paused_ui)
 		GameManager.DIED:
-			pass
+			var died_ui: Control = died_ui_scene.instantiate()
+			add_child(died_ui)
 		GameManager.WAVE_END:
 			var wave_end_ui: Control = wave_end_ui_scene.instantiate()
 			wave_end_ui.wave_service = wave_service

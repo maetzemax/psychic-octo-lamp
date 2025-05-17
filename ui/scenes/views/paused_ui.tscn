@@ -1,9 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://v8ot12rd37ev"]
+[gd_scene load_steps=5 format=3 uid="uid://me1deo45habc"]
 
-[ext_resource type="Script" uid="uid://jvoxaqewf4bv" path="res://ui/scripts/views/pause_ui.gd" id="1_ibxep"]
-[ext_resource type="PackedScene" uid="uid://7q0ejfmi2p2e" path="res://ui/scenes/buttons/menu_button.tscn" id="1_sakgl"]
-[ext_resource type="Script" uid="uid://j08wacx5iy6r" path="res://ui/scripts/gerneral/focused_element.gd" id="2_ibxep"]
-[ext_resource type="PackedScene" uid="uid://hmq4agdg0rbg" path="res://ui/scenes/components/stats/player_stats_ui.tscn" id="3_7el8o"]
+[ext_resource type="Script" uid="uid://cjtqquka05dyt" path="res://ui/scripts/views/pause_ui.gd" id="1_otr2a"]
+[ext_resource type="PackedScene" uid="uid://7q0ejfmi2p2e" path="res://ui/scenes/buttons/menu_button.tscn" id="2_ufb0a"]
+[ext_resource type="Script" uid="uid://j08wacx5iy6r" path="res://ui/scripts/gerneral/focused_element.gd" id="3_bmdyo"]
+[ext_resource type="PackedScene" uid="uid://hmq4agdg0rbg" path="res://ui/scenes/components/stats/player_stats_ui.tscn" id="4_d4ffk"]
 
 [node name="PauseUI" type="Panel"]
 anchors_preset = 15
@@ -12,7 +12,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-script = ExtResource("1_ibxep")
+script = ExtResource("1_otr2a")
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
@@ -45,16 +45,16 @@ layout_mode = 2
 size_flags_vertical = 6
 theme_override_constants/separation = 40
 
-[node name="Continue" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_sakgl")]
+[node name="Continue" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_ufb0a")]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
 size_flags_vertical = 6
 focus_neighbor_bottom = NodePath("../Menu")
 text = "CONTINUE"
-script = ExtResource("2_ibxep")
+script = ExtResource("3_bmdyo")
 
-[node name="Menu" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("1_sakgl")]
+[node name="Menu" parent="MarginContainer/VBoxContainer/VBoxContainer" instance=ExtResource("2_ufb0a")]
 z_index = 1
 z_as_relative = false
 layout_mode = 2
@@ -62,7 +62,7 @@ size_flags_vertical = 6
 focus_neighbor_top = NodePath("../Continue")
 text = "MAIN MENU"
 
-[node name="PlayerStatsUI" parent="MarginContainer" instance=ExtResource("3_7el8o")]
+[node name="PlayerStatsUI" parent="MarginContainer" instance=ExtResource("4_d4ffk")]
 layout_mode = 2
 size_flags_horizontal = 0
 size_flags_vertical = 4
