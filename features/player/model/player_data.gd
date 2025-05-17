@@ -2,6 +2,8 @@ extends Resource
 
 class_name PlayerData
 
+enum ATTRIBUTES { HEALTH, ARMOR, DAMAGE, ATTACK_SPEED, ATTACK_RANGE, MOVEMENT_SPEED}
+
 @export var health: int = 20
 var current_health: int = health
 @export var armor: int = 0

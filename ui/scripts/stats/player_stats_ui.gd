@@ -20,10 +20,10 @@ func _process(delta: float) -> void:
 		_material_label.text = str(MaterialService.get_materials())
 		_health_label.text = str(player.data.current_health)
 		_armor_label.text = str(player.data.armor)
-		_attack_damage_label.text = str(player.data.damage)
-		_attack_speed_label.text = str(int(player.data.attack_speed) * 100) + " %"
-		_attack_range_label.text = str(int(player.data.attack_range) * 100) + " %"
-		_move_speed_label.text = str(int(player.data.movement_speed) * 100) + " %"
+		_attack_damage_label.text = str(roundi(player.data.damage * 100)) + " %"
+		_attack_speed_label.text = str(roundi(player.data.attack_speed * 100)) + " %"
+		_attack_range_label.text = str(roundi(player.data.attack_range * 100)) + " %"
+		_move_speed_label.text = str(roundi(player.data.movement_speed * 100)) + " %"
 	
 	if !is_round_end:
 		get_tree().call_group_flags(
