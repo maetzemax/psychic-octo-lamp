@@ -7,10 +7,18 @@ var _direction = Vector2.ZERO
 var enemy_detection: EnemyDetection
 
 func _ready():
+	data.current_health = data.health
 	enemy_detection = EnemyDetection.new(self)
 	
 	var input_manager = get_node("/root/InputManager")
 	input_manager.movement_input_changed.connect(_on_movement_input_changed)
+	
+	GameManager.on_active_game_state_changed.connect(_on_game_state_changed)
+
+func _on_game_state_changed(state: GameManager.GAMESTATE):
+	match state:
+		GameManager.ACTIVE:
+			data.current_health = data.health
 
 func _physics_process(_delta: float):
 	if GameManager.active_game_state != GameManager.ACTIVE:

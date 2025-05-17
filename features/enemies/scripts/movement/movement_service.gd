@@ -10,8 +10,8 @@ var enemy: Enemy
 
 var target_pos: Vector2
 
-func _init(enemy: Enemy):
-	self.enemy = enemy
+func _init(_enemy: Enemy):
+	self.enemy = _enemy
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")

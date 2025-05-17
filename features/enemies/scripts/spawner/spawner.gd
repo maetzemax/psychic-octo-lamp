@@ -5,21 +5,13 @@ extends Node2D
 
 @export var wave_service: WaveService
 
-@export var spawn_cooldown: float = 5
-
-var spawn_timer: TimerHelper = TimerHelper.new()
+var spawn_timer: TimerHelper
 var enemies: Array[EnemyData]
+
+var spawn_cooldown: float
 
 var min_enemy_amount: int = 1
 var max_enemy_amount: int = 5
-
-func _ready():
-	randomize()
-	spawn_timer.autostart = true
-	spawn_timer.wait_time = spawn_cooldown
-	spawn_timer.one_shot = false
-	spawn_timer.timeout.connect(_on_timeout)
-	add_child(spawn_timer)
 
 func _on_timeout():
 	_spawn_enemies()
@@ -27,10 +19,6 @@ func _on_timeout():
 func _spawn_enemies():
 	if !player or !wave_service.active_wave:
 		return
-		
-	enemies = wave_service.active_wave.enemies
-	min_enemy_amount = wave_service.active_wave.min_spawn_amount
-	max_enemy_amount = wave_service.active_wave.max_spawn_amount
 	
 	var spawn_areas := world.get_node("SpawnAreas")
 	var valid_spawn_rects: Array[Rect2] = []
@@ -76,3 +64,25 @@ func _spawn_enemies():
 		enemy.data = enemy_data.duplicate()
 		enemy.global_position = spawn_pos
 		add_child(enemy)
+
+func setup_timer():
+	if wave_service.active_wave == null:
+		push_error("setup_timer: Es gibt keine aktive Wave!")
+		return
+
+	spawn_cooldown = wave_service.active_wave.spawn_cooldown
+	enemies = wave_service.active_wave.enemies
+	min_enemy_amount = wave_service.active_wave.min_spawn_amount
+	max_enemy_amount = wave_service.active_wave.max_spawn_amount
+
+	# Timer zurücksetzen
+	if spawn_timer:
+		spawn_timer.queue_free()
+
+	randomize()
+	spawn_timer = TimerHelper.new()
+	spawn_timer.autostart = true
+	spawn_timer.wait_time = spawn_cooldown
+	spawn_timer.one_shot = false
+	spawn_timer.timeout.connect(_on_timeout)
+	add_child(spawn_timer)

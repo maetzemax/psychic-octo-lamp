@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=24 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://level design/arena.tscn" id="1_c4odk"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://features/player/scenes/player.tscn" id="2_bh73x"]
@@ -14,9 +14,29 @@
 [ext_resource type="PackedScene" uid="uid://bwdi2dnsr37j5" path="res://features/enemies/scenes/purple.tscn" id="8_mv7eo"]
 [ext_resource type="PackedScene" uid="uid://c01vsgvy22nq1" path="res://features/projectile/scenes/projectile.tscn" id="9_nq67m"]
 [ext_resource type="Script" uid="uid://ba5armmji875s" path="res://features/enemies/models/general/ranged_enemy_data.gd" id="10_hgyux"]
-[ext_resource type="PackedScene" uid="uid://dw8l8du03gagd" path="res://features/enemies/scenes/red.tscn" id="11_i0m8h"]
+[ext_resource type="PackedScene" uid="uid://5pslo1bqarlr" path="res://features/enemies/scenes/blue.tscn" id="11_d750j"]
 
-[sub_resource type="Resource" id="Resource_jkv2x"]
+[sub_resource type="Resource" id="Resource_6egul"]
+script = ExtResource("7_agx1c")
+model = ExtResource("11_d750j")
+health = 5
+movement_type = 0
+movement_speed = 0.6
+attack_ability = 0
+attack_damage = 2
+attack_speed = 1.0
+metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
+
+[sub_resource type="Resource" id="Resource_d750j"]
+script = ExtResource("6_u80oo")
+enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_6egul")])
+wave_time = 20
+spawn_cooldown = 3.0
+min_spawn_amount = 2
+max_spawn_amount = 4
+metadata/_custom_type_script = "uid://kbyxa06mqqre"
+
+[sub_resource type="Resource" id="Resource_x5ief"]
 script = ExtResource("10_hgyux")
 attack_range = 20.0
 projectile_scene = ExtResource("9_nq67m")
@@ -24,45 +44,62 @@ projectile_speed = 40.0
 model = ExtResource("8_mv7eo")
 health = 10
 movement_type = 0
-movement_speed = 1.0
+movement_speed = 0.6
 attack_ability = 1
 attack_damage = 1
 attack_speed = 1.0
 metadata/_custom_type_script = "uid://ba5armmji875s"
 
-[sub_resource type="Resource" id="Resource_85g3d"]
+[sub_resource type="Resource" id="Resource_qxe0l"]
 script = ExtResource("6_u80oo")
-enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_jkv2x")])
-wave_time = 20
+enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_x5ief")])
+wave_time = 40
+spawn_cooldown = 3.0
 min_spawn_amount = 1
-max_spawn_amount = 2
+max_spawn_amount = 4
 metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
-[sub_resource type="Resource" id="Resource_0ld40"]
+[sub_resource type="Resource" id="Resource_we3g0"]
+script = ExtResource("10_hgyux")
+attack_range = 20.0
+projectile_scene = ExtResource("9_nq67m")
+projectile_speed = 40.0
+model = ExtResource("8_mv7eo")
+health = 10
+movement_type = 2
+movement_speed = 0.6
+attack_ability = 1
+attack_damage = 2
+attack_speed = 1.0
+metadata/_custom_type_script = "uid://ba5armmji875s"
+
+[sub_resource type="Resource" id="Resource_xppne"]
 script = ExtResource("7_agx1c")
-model = ExtResource("11_i0m8h")
-health = 15
+model = ExtResource("11_d750j")
+health = 10
 movement_type = 0
-movement_speed = 1.0
+movement_speed = 0.6
 attack_ability = 2
-attack_damage = 25
-attack_speed = 0.5
+attack_damage = 2
+attack_speed = 2.0
 metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
 
-[sub_resource type="Resource" id="Resource_a8y0u"]
+[sub_resource type="Resource" id="Resource_ch0dr"]
 script = ExtResource("6_u80oo")
-enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_0ld40")])
-wave_time = 30
-min_spawn_amount = 3
-max_spawn_amount = 5
+enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_we3g0"), SubResource("Resource_xppne")])
+wave_time = 40
+spawn_cooldown = 3.0
+min_spawn_amount = 1
+max_spawn_amount = 4
 metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
-[sub_resource type="Resource" id="Resource_choun"]
+[sub_resource type="Resource" id="Resource_6wqlb"]
 script = ExtResource("6_u80oo")
-enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_0ld40")])
-wave_time = 30
-min_spawn_amount = 3
-max_spawn_amount = 5
+enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_we3g0"), SubResource("Resource_xppne")])
+wave_time = 40
+spawn_cooldown = 3.0
+min_spawn_amount = 1
+max_spawn_amount = 4
 metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
 [node name="Level" type="Node2D"]
@@ -70,13 +107,6 @@ metadata/_custom_type_script = "uid://kbyxa06mqqre"
 [node name="Arena" parent="." instance=ExtResource("1_c4odk")]
 
 [node name="Player" parent="." instance=ExtResource("2_bh73x")]
-
-[node name="Spawner" type="Node2D" parent="." node_paths=PackedStringArray("world", "player", "wave_service")]
-script = ExtResource("3_74iqh")
-world = NodePath("../Arena")
-player = NodePath("../Player")
-wave_service = NodePath("../WaveService")
-spawn_cooldown = 2.0
 
 [node name="User Interface" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_service")]
 script = ExtResource("4_itjqq")
@@ -88,5 +118,11 @@ died_ui_scene = ExtResource("6_dankv")
 
 [node name="WaveService" type="Node" parent="."]
 script = ExtResource("5_ksm3f")
-waves = Array[ExtResource("6_u80oo")]([SubResource("Resource_85g3d"), SubResource("Resource_a8y0u"), SubResource("Resource_choun")])
+waves = Array[ExtResource("6_u80oo")]([SubResource("Resource_d750j"), SubResource("Resource_qxe0l"), SubResource("Resource_ch0dr"), SubResource("Resource_6wqlb")])
 metadata/_custom_type_script = "uid://bggrjuka5tnjm"
+
+[node name="Spawner" type="Node2D" parent="WaveService" node_paths=PackedStringArray("world", "player", "wave_service")]
+script = ExtResource("3_74iqh")
+world = NodePath("../../Arena")
+player = NodePath("../../Player")
+wave_service = NodePath("..")

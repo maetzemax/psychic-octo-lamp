@@ -2,6 +2,8 @@ extends Node
 
 class_name WaveService
 
+@onready var spawner = $Spawner
+
 var current_wave: int  = 1
 static var current_wave_time: int = 0
 
@@ -13,13 +15,18 @@ var timer: TimerHelper
 func _ready():
 	start_wave()
 
-func _process(delta: float):
+func _process(_delta: float):
 	if timer:
 		current_wave_time = int(timer.time_left)
 	
 func start_wave():
+	if current_wave - 1 == waves.size():
+		# TODO: Fix ending
+		GameManager.set_active_game(GameManager.DIED)
+		return
 	active_wave = waves[current_wave - 1]
 	setup_timer()
+	spawner.setup_timer()
 	GameManager.set_active_game(GameManager.ACTIVE)
 
 func reset():

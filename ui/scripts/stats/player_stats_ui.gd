@@ -12,13 +12,13 @@ var player: CharacterBody2D
 @onready var _attack_range_label: Label = $VBoxContainer/AttackRange/Panel/HBoxContainer/Amount
 @onready var _move_speed_label: Label = $VBoxContainer/MovementSpeed/Panel/HBoxContainer/Amount
 
-func _ready() -> void:
+func _ready():
 	player = get_tree().get_first_node_in_group("Player")
 
-func _process(delta: float) -> void:
+func _process(_delta: float):
 	if player:
 		_material_label.text = str(MaterialService.get_materials())
-		_health_label.text = str(player.data.current_health)
+		_health_label.text = str(player.data.health)
 		_armor_label.text = str(player.data.armor)
 		_attack_damage_label.text = str(roundi(player.data.damage * 100)) + " %"
 		_attack_speed_label.text = str(roundi(player.data.attack_speed * 100)) + " %"
