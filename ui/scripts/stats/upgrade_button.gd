@@ -10,6 +10,7 @@ func _ready():
 
 func _process(_delta: float):
 	disabled = MaterialService.get_materials() < _current_price
+	tooltip_text = "Item price: " + str(_current_price)
 
 func _on_upgrade_pressed():
 	if not player:

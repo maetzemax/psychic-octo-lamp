@@ -1,16 +1,16 @@
 extends Control
 
-@export var is_round_end: bool = false
+@export var is_round_end: bool = true
 
 var player: CharacterBody2D
 
-@onready var _material_label: Label = $MarginContainer/VBoxContainer/Material/Panel/HBoxContainer/Amount
-@onready var _health_label: Label = $MarginContainer/VBoxContainer/Health/Panel/HBoxContainer/Amount
-@onready var _armor_label: Label = $MarginContainer/VBoxContainer/Armor/Panel/HBoxContainer/Amount
-@onready var _attack_damage_label: Label = $MarginContainer/VBoxContainer/AttackDamage/Panel/HBoxContainer/Amount
-@onready var _attack_speed_label: Label = $MarginContainer/VBoxContainer/AttackSpeed/Panel/HBoxContainer/Amount
-@onready var _attack_range_label: Label = $MarginContainer/VBoxContainer/AttackRange/Panel/HBoxContainer/Amount
-@onready var _move_speed_label: Label = $MarginContainer/VBoxContainer/MovementSpeed/Panel/HBoxContainer/Amount
+@onready var _material_label: Label = $VBoxContainer/Material/Panel/HBoxContainer/Amount
+@onready var _health_label: Label = $VBoxContainer/Health/Panel/HBoxContainer/Amount
+@onready var _armor_label: Label = $VBoxContainer/Armor/Panel/HBoxContainer/Amount
+@onready var _attack_damage_label: Label = $VBoxContainer/AttackDamage/Panel/HBoxContainer/Amount
+@onready var _attack_speed_label: Label = $VBoxContainer/AttackSpeed/Panel/HBoxContainer/Amount
+@onready var _attack_range_label: Label = $VBoxContainer/AttackRange/Panel/HBoxContainer/Amount
+@onready var _move_speed_label: Label = $VBoxContainer/MovementSpeed/Panel/HBoxContainer/Amount
 
 func _ready() -> void:
 	player = get_tree().get_first_node_in_group("Player")

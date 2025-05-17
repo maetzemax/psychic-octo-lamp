@@ -31,277 +31,277 @@ corner_radius_top_right = 4
 corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
-[node name="PlayerStatsUI" type="Control"]
-layout_mode = 3
-anchors_preset = 0
-script = ExtResource("1_d3eyt")
-metadata/_edit_use_anchors_ = true
-
-[node name="MarginContainer" type="MarginContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+[node name="PlayerStatsUI" type="MarginContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -227.0
+offset_bottom = 227.0
+grow_horizontal = 2
+grow_vertical = 2
 theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
+script = ExtResource("1_d3eyt")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Material" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Material" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Material"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/Material"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Material/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Material/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Material/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Material/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("2_cv3at")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Material/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Material/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "MATERIAL"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/Material/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/Material/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "0"
 
-[node name="Health" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Health" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Health"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/Health"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Health/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Health/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Health/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Health/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("3_dgat5")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Health/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Health/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "HEALTH"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/Health/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/Health/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "100"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Health" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/Health" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
 
-[node name="Armor" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="Armor" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/Armor"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/Armor"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/Armor/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/Armor/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/Armor/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Armor/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_cv3at")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/Armor/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/Armor/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "ARMOR"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/Armor/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/Armor/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "0"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/Armor" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/Armor" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
 attribute = 1
 
-[node name="AttackDamage" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AttackDamage" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/AttackDamage"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/AttackDamage"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AttackDamage/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AttackDamage/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/AttackDamage/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/AttackDamage/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("5_g661m")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AttackDamage/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/AttackDamage/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "ATTACK DAMAGE"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/AttackDamage/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/AttackDamage/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackDamage" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/AttackDamage" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
 attribute = 2
 
-[node name="AttackSpeed" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AttackSpeed" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/AttackSpeed"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/AttackSpeed"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AttackSpeed/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AttackSpeed/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("6_dgat5")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "ATTACK SPEED"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/AttackSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackSpeed" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/AttackSpeed" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
 attribute = 3
 
-[node name="AttackRange" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="AttackRange" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/AttackRange"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/AttackRange"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/AttackRange/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/AttackRange/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/AttackRange/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/AttackRange/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("7_yvrjg")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/AttackRange/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/AttackRange/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "ATTACK RANGE"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/AttackRange/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/AttackRange/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "10"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/AttackRange" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/AttackRange" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
 attribute = 4
 
-[node name="MovementSpeed" type="HBoxContainer" parent="MarginContainer/VBoxContainer"]
+[node name="MovementSpeed" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
 theme_override_constants/separation = 20
 
-[node name="Panel" type="PanelContainer" parent="MarginContainer/VBoxContainer/MovementSpeed"]
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/MovementSpeed"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_styles/panel = SubResource("StyleBoxFlat_suxkn")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/VBoxContainer/MovementSpeed/Panel"]
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MovementSpeed/Panel"]
 layout_mode = 2
 size_flags_vertical = 4
 theme_override_constants/separation = 12
 
-[node name="TextureRect" type="TextureRect" parent="MarginContainer/VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 texture = ExtResource("4_yvrjg")
 expand_mode = 2
 
-[node name="Label" type="Label" parent="MarginContainer/VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
+[node name="Label" type="Label" parent="VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 theme_override_font_sizes/font_size = 24
 text = "MOVEMENT SPEED"
 
-[node name="Amount" type="Label" parent="MarginContainer/VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
+[node name="Amount" type="Label" parent="VBoxContainer/MovementSpeed/Panel/HBoxContainer"]
 layout_mode = 2
 theme_override_font_sizes/font_size = 24
 theme_override_styles/normal = SubResource("StyleBoxFlat_wuvb1")
 text = "40"
 
-[node name="UpgradeButton" type="Button" parent="MarginContainer/VBoxContainer/MovementSpeed" groups=["UpgradeButton"]]
+[node name="UpgradeButton" type="Button" parent="VBoxContainer/MovementSpeed" groups=["UpgradeButton"]]
 layout_mode = 2
 text = "+"
 icon_alignment = 1

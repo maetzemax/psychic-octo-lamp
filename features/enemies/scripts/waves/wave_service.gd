@@ -20,14 +20,14 @@ func _process(delta: float):
 func start_wave():
 	active_wave = waves[current_wave - 1]
 	setup_timer()
-	GameManager.active_game_state = GameManager.ACTIVE
+	GameManager.set_active_game(GameManager.ACTIVE)
 
 func reset():
 	current_wave = 1
 
 func _on_cooldown_timer_timeout():
 	current_wave += 1
-	GameManager.active_game_state = GameManager.WAVE_END
+	GameManager.set_active_game(GameManager.WAVE_END)
 
 func setup_timer():
 	timer = TimerHelper.new()

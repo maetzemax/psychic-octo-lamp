@@ -8,12 +8,15 @@ const LAYER_ENEMY_RANGED = 1 << 3
 
 @export var data: WeaponData
 
+@onready var player: CharacterBody2D
+
 var attack_cooldown := false
 var attack_timer: TimerHelper = TimerHelper.new()
 var enemy_detection: EnemyDetection
 
 func _ready():
-	attack_timer.wait_time = 1.0 / data.attack_speed
+	player = get_parent()
+	attack_timer.wait_time = 1.0 / (data.attack_speed * player.data.attack_speed) 
 	attack_timer.timeout.connect(_on_attack_timeout)
 	add_child(attack_timer)
 	enemy_detection = EnemyDetection.new(self)

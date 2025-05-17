@@ -31,12 +31,13 @@ func _on_movement_input_changed(direction: Vector2):
 	_direction = direction
 
 func reduce_health(amount: int):
-	data.current_health -= amount
+	var damage_taken = max(1, amount - data.armor)
+	data.current_health -= damage_taken
 	if data.current_health <= 0:
 		die()
 
 func die():
-	GameManager.active_game_state = GameManager.DIED
+	GameManager.set_active_game(GameManager.DIED)
 	var camera = Camera2D.new()
 	get_parent().add_child(camera)
 	queue_free()
