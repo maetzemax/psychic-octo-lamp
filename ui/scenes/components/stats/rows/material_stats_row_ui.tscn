@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://2mfooyojcwpm"]
+
+[node name="MaterialStatsRowUI" type="Control"]
+layout_mode = 3
+anchors_preset = 0

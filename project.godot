@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://scripts/gamemanager/gamemanager.gd"
-InputManager="*res://scripts/input_manager.gd"
-MaterialService="*res://scripts/material/material_service.gd"
+GameManager="*res://features/game_manager/game_manager.gd"
+InputManager="*res://features/input_manager/scripts/input_manager.gd"
+MaterialService="*res://features/material/scripts/material_service.gd"
 
 [display]
 
@@ -29,6 +29,7 @@ window/size/viewport_height=900
 window/size/mode=3
 window/stretch/mode="canvas_items"
 window/stretch/aspect="keep_height"
+window/canvas_textures/default_texture_filter=0
 
 [global_group]
 
@@ -93,3 +94,7 @@ walk_right={
 2d_physics/layer_4="Enemy - Ranged"
 2d_physics/layer_5="Player-Projectile"
 2d_physics/layer_6="Enemy-Projectile"
+
+[rendering]
+
+textures/canvas_textures/default_texture_filter=0
