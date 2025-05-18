@@ -1,54 +1,21 @@
 extends CharacterBody2D
 
-@export var data: PlayerData
-@onready var hitbox: Area2D = $Hitbox
+const SPEED = 300.0
 
-@onready var camera: Camera2D = $Camera2D
-
-var _direction = Vector2.ZERO
-var enemy_detection: EnemyDetection
+@onready var camera_2d: Camera2D = $Camera2D
 
 func _ready():
-	camera.enabled = is_multiplayer_authority()
-	data.current_health = data.health
-	enemy_detection = EnemyDetection.new(self)
-	
-	var input_manager = get_node("/root/InputManager")
-	input_manager.movement_input_changed.connect(_on_movement_input_changed)
-	
-	GameManager.on_active_game_state_changed.connect(_on_game_state_changed)
-
-func _on_game_state_changed(state: GameManager.GAMESTATE):
-	match state:
-		GameManager.ACTIVE:
-			data.current_health = data.health
+	camera_2d.enabled = is_multiplayer_authority()
 
 func _physics_process(_delta: float):
-	if GameManager.active_game_state != GameManager.ACTIVE or !is_multiplayer_authority():
+	if not is_multiplayer_authority():
 		return
+	
+	var direction := Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if direction:
+		velocity = direction * SPEED
+	else:
+		velocity.x = move_toward(velocity.x, 0, SPEED)
+		velocity.x = move_toward(velocity.y, 0, SPEED)
 
-	var nearest_enemy = enemy_detection.get_nearest_enemy()
-	if nearest_enemy:
-		var target_angle = (nearest_enemy.global_position - global_position).angle()
-		rotation = lerp_angle(rotation, target_angle, 0.2)
-
-	_update_movement()
-
-func _update_movement():
-	velocity = _direction.normalized() * Constants.MOVEMENT_SPEED * data.movement_speed
 	move_and_slide()
-
-func _on_movement_input_changed(direction: Vector2):
-	_direction = direction
-
-func reduce_health(amount: int):
-	var damage_taken = max(1, amount - data.armor)
-	data.current_health -= damage_taken
-	if data.current_health <= 0:
-		die()
-
-func die():
-	GameManager.set_active_game(GameManager.DIED)
-	var camera = Camera2D.new()
-	get_parent().add_child(camera)
-	queue_free()

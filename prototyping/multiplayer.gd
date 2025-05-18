@@ -57,3 +57,5 @@ func _on_refresh_pressed() -> void:
 	if $LobbyContainer/Lobbies.get_child_count() > 0:
 		for n in $LobbyContainer/Lobbies.get_children():
 			n.queue_free()
+	
+	_open_lobby_list()

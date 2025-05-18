@@ -1,11 +1,11 @@
 [gd_scene load_steps=3 format=3 uid="uid://8bu1we0wdl27"]
 
 [ext_resource type="Script" uid="uid://c84oenn1ibtnv" path="res://prototyping/multiplayer_spawner.gd" id="1_dsgtm"]
-[ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://features/player/scenes/player.tscn" id="2_nphs0"]
+[ext_resource type="PackedScene" uid="uid://dx8p5ikop5hqr" path="res://prototyping/prototype_player.tscn" id="2_dsgtm"]
 
 [node name="PrototypeLevel" type="Node"]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
 spawn_path = NodePath(".")
 script = ExtResource("1_dsgtm")
-player_scene = ExtResource("2_nphs0")
+player_scene = ExtResource("2_dsgtm")
