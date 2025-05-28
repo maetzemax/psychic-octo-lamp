@@ -7,7 +7,7 @@ var _materials: int = 0
 func get_materials() -> int:
 	return _materials
 
-func add_materials(amount: int) -> void:
+func add_materials(amount: int):
 	if amount <= 0:
 		return
 	_materials += amount
@@ -20,6 +20,6 @@ func reduce_materials(amount: int) -> bool:
 	materials_changed.emit(_materials)
 	return true
 
-func reset() -> void:
+func reset():
 	_materials = 0
 	materials_changed.emit(_materials)
