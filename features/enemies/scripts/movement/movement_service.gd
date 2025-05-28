@@ -4,7 +4,7 @@ class_name MovementService
 
 signal target_pos_reached
 
-var world_mesh: MeshInstance2D
+var sprite: Sprite2D
 var player: CharacterBody2D
 var enemy: Enemy
 
@@ -15,7 +15,7 @@ func _init(_enemy: Enemy):
 
 func _ready():
 	player = get_tree().get_first_node_in_group("Player")
-	world_mesh = get_tree().get_first_node_in_group("World").get_node("Mesh")
+	sprite = get_tree().get_first_node_in_group("World").get_node("Sprite2D")
 	
 func resolve_movement(type: MOVEMENT.TYPE):
 	if not player or not enemy or _colliding_with_player():
@@ -49,7 +49,7 @@ func _zick_zack_movement():
 
 func _random_movement():
 	if global_position.distance_to(target_pos) < 10 or target_pos == Vector2.ZERO:
-		var world_size = (world_mesh.mesh.size.x - 32) / 2
+		var world_size = (sprite.texture.size.x - 32) / 2
 
 		var random_pos: Vector2 = Vector2(
 			randi_range(-world_size, world_size),

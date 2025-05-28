@@ -1,7 +1,6 @@
 [gd_scene load_steps=8 format=3 uid="uid://ualegbp2h0us"]
 
-[sub_resource type="BoxMesh" id="BoxMesh_sgp6g"]
-size = Vector3(1024, 1024, 0.1)
+[ext_resource type="Texture2D" uid="uid://cnfgrvu6rxt2o" path="res://level design/background_arena.png" id="1_3m0i4"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
 size = Vector2(150, 150)
@@ -23,8 +22,8 @@ size = Vector2(1025, 1)
 
 [node name="Arena" type="Node2D" groups=["World"]]
 
-[node name="Mesh" type="MeshInstance2D" parent="."]
-mesh = SubResource("BoxMesh_sgp6g")
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3m0i4")
 
 [node name="SpawnAreas" type="Node2D" parent="."]
 
