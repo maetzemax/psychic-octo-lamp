@@ -49,7 +49,7 @@ func _zick_zack_movement():
 
 func _random_movement():
 	if global_position.distance_to(target_pos) < 10 or target_pos == Vector2.ZERO:
-		var world_size = (sprite.texture.size.x - 32) / 2
+		var world_size = (sprite.texture.get_height() - 32) / 2
 
 		var random_pos: Vector2 = Vector2(
 			randi_range(-world_size, world_size),

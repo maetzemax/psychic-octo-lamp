@@ -1,9 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bfwdxpk4ersdu"]
+[gd_scene load_steps=11 format=3 uid="uid://bfwdxpk4ersdu"]
 
 [ext_resource type="Script" uid="uid://lf7upko3g87" path="res://features/player/scripts/player.gd" id="1_3vyb7"]
 [ext_resource type="Script" uid="uid://j8e3k25sl211" path="res://features/player/model/player_data.gd" id="2_dqkch"]
 [ext_resource type="Script" uid="uid://qqv1xko0xu0x" path="res://features/player/scripts/weapon.gd" id="2_qhqgy"]
 [ext_resource type="Script" uid="uid://ci7s0iyainkp8" path="res://models/weapon_data.gd" id="3_dqkch"]
+[ext_resource type="PackedScene" uid="uid://c56xfclp0dxtm" path="res://features/projectile/scenes/arrow.tscn" id="4_jmeet"]
+[ext_resource type="Texture2D" uid="uid://c1phj400ulugg" path="res://ui/assets/stats/attack_speed.png" id="5_osi8f"]
 
 [sub_resource type="Resource" id="Resource_qlg0r"]
 script = ExtResource("2_dqkch")
@@ -26,6 +28,7 @@ script = ExtResource("3_dqkch")
 attack_damage = 5
 attack_speed = 1.0
 attack_range = 50.0
+projectile_scene = ExtResource("4_jmeet")
 projectile_speed = 100.0
 metadata/_custom_type_script = "uid://ci7s0iyainkp8"
 
@@ -48,9 +51,17 @@ position_smoothing_enabled = true
 position_smoothing_speed = 2.0
 
 [node name="Weapon" type="Node2D" parent="."]
-position = Vector2(1, 0)
+position = Vector2(16, 0)
 script = ExtResource("2_qhqgy")
 data = SubResource("Resource_dqkch")
+
+[node name="Sprite2D" type="Sprite2D" parent="Weapon"]
+z_index = 25
+rotation = -2.38079
+texture = ExtResource("5_osi8f")
+
+[node name="ShootingPoint" type="Node2D" parent="Weapon"]
+position = Vector2(-6, 5)
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 2

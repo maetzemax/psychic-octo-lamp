@@ -1,12 +1,15 @@
-[gd_scene load_steps=4 format=3 uid="uid://bwdi2dnsr37j5"]
+[gd_scene load_steps=5 format=3 uid="uid://bwdi2dnsr37j5"]
 
 [ext_resource type="Script" uid="uid://bj5ofhicbsont" path="res://features/enemies/scripts/general/enemy.gd" id="1_5nytn"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
 size = Vector2(32, 32)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3ae8a"]
 size = Vector2(16, 16)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(32, 32)
 
 [node name="Purple" type="CharacterBody2D" groups=["Enemy"]]
 z_index = 5
@@ -19,11 +22,11 @@ modulate = Color(0.652866, 0.304169, 0.886611, 1)
 mesh = SubResource("QuadMesh_oahj1")
 
 [node name="PhysicalCollsion" type="CollisionShape2D" parent="."]
-shape = SubResource("RectangleShape2D_sugp2")
+shape = SubResource("RectangleShape2D_3ae8a")
 
 [node name="Hitbox" type="Area2D" parent="."]
 collision_layer = 0
-collision_mask = 18
+collision_mask = 16
 
 [node name="Collsion" type="CollisionShape2D" parent="Hitbox"]
 shape = SubResource("RectangleShape2D_sugp2")
