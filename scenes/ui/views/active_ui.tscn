@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bkptboaj742ho"]
+
+[ext_resource type="PackedScene" uid="uid://dlnxyjyi5kbyq" path="res://scenes/ui/components/stats/base/stats_row_ui.tscn" id="1_w6eb1"]
+[ext_resource type="Script" uid="uid://joovg3fmj2tr" path="res://scripts/ui/stats/health_stats_row_ui.gd" id="2_g8ckl"]
+[ext_resource type="Texture2D" uid="uid://87lgwamrxgpj" path="res://assets/stats/health.png" id="3_8bd0f"]
+[ext_resource type="Script" uid="uid://deppce01xxvwk" path="res://scripts/ui/stats/material_stats_row_ui.gd" id="3_odiwh"]
+[ext_resource type="Texture2D" uid="uid://bvoode14op4w2" path="res://assets/material.png" id="5_qqoyk"]
+[ext_resource type="PackedScene" uid="uid://d3py88ulohch5" path="res://scenes/ui/components/wave/wave_timer_ui.tscn" id="6_n7xxy"]
+
+[node name="ActiveUI" type="Control"]
+layout_mode = 3
+anchors_preset = 10
+anchor_right = 1.0
+grow_horizontal = 2
+size_flags_horizontal = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 144.0
+grow_horizontal = 2
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="MaterialStatRow" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_w6eb1")]
+layout_mode = 2
+script = ExtResource("3_odiwh")
+icon = ExtResource("5_qqoyk")
+label_text = "MATERIAL"
+
+[node name="HealthStatRow" parent="MarginContainer/HBoxContainer/VBoxContainer" instance=ExtResource("1_w6eb1")]
+layout_mode = 2
+script = ExtResource("2_g8ckl")
+icon = ExtResource("3_8bd0f")
+label_text = "HEALTH"
+
+[node name="WaveTimer" parent="MarginContainer/HBoxContainer" instance=ExtResource("6_n7xxy")]
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_vertical = 0

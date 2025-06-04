@@ -1,0 +1,45 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3py88ulohch5"]
+
+[ext_resource type="Script" uid="uid://btuii72medsh7" path="res://scripts/ui/wave/wave_timer_ui.gd" id="1_yni14"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_xdngi"]
+content_margin_left = 8.0
+content_margin_top = 4.0
+content_margin_right = 8.0
+content_margin_bottom = 4.0
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_yecyf"]
+content_margin_left = 4.0
+content_margin_top = 0.0
+content_margin_right = 4.0
+content_margin_bottom = 0.0
+bg_color = Color(0.4, 0.4, 0.4, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="WaveTimer" type="PanelContainer"]
+theme_override_styles/panel = SubResource("StyleBoxFlat_xdngi")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+theme_override_constants/separation = 12
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_font_sizes/font_size = 24
+text = "WAVE TIME"
+
+[node name="Amount" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 24
+theme_override_styles/normal = SubResource("StyleBoxFlat_yecyf")
+text = "0"
+script = ExtResource("1_yni14")

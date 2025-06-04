@@ -1,0 +1,138 @@
+[gd_scene load_steps=8 format=3 uid="uid://ualegbp2h0us"]
+
+[ext_resource type="Texture2D" uid="uid://cnfgrvu6rxt2o" path="res://assets/arena_background.png" id="1_3m0i4"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_o5qli"]
+size = Vector2(150, 150)
+
+[sub_resource type="BoxMesh" id="BoxMesh_o5qli"]
+size = Vector3(1025, 2, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0wfyh"]
+size = Vector2(1025, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jyhfs"]
+size = Vector2(1025, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tbgi4"]
+size = Vector2(1025, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
+size = Vector2(1025, 1)
+
+[node name="Arena" type="Node2D" groups=["World"]]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_3m0i4")
+
+[node name="SpawnAreas" type="Node2D" parent="."]
+
+[node name="Spawn1" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(-250, -250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn1"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn2" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(0, -250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn2"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn3" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(250, -250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn3"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn4" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(-250, 0)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn4"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn5" type="StaticBody2D" parent="SpawnAreas"]
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn5"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn6" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(250, 0)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn6"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn7" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(-250, 250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn7"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn8" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(0, 250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn8"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Spawn9" type="StaticBody2D" parent="SpawnAreas"]
+position = Vector2(250, 250)
+
+[node name="SpawnArea" type="CollisionShape2D" parent="SpawnAreas/Spawn9"]
+shape = SubResource("RectangleShape2D_o5qli")
+disabled = true
+
+[node name="Borders" type="Node2D" parent="."]
+
+[node name="BorderBottom" type="StaticBody2D" parent="Borders"]
+position = Vector2(0, 512)
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance2D" parent="Borders/BorderBottom"]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderBottom"]
+shape = SubResource("RectangleShape2D_0wfyh")
+
+[node name="BorderTop" type="StaticBody2D" parent="Borders"]
+position = Vector2(0, -512)
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance2D" parent="Borders/BorderTop"]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderTop"]
+shape = SubResource("RectangleShape2D_jyhfs")
+
+[node name="BorderLeft" type="StaticBody2D" parent="Borders"]
+position = Vector2(-512, 0)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance2D" parent="Borders/BorderLeft"]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderLeft"]
+shape = SubResource("RectangleShape2D_tbgi4")
+
+[node name="BorderRight" type="StaticBody2D" parent="Borders"]
+position = Vector2(512, 0)
+rotation = 1.5708
+collision_mask = 0
+
+[node name="Mesh" type="MeshInstance2D" parent="Borders/BorderRight"]
+modulate = Color(0, 0, 0, 1)
+mesh = SubResource("BoxMesh_o5qli")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
+shape = SubResource("RectangleShape2D_tefeu")

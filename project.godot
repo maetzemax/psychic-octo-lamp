@@ -18,9 +18,9 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-GameManager="*res://features/game_manager/game_manager.gd"
-InputManager="*res://features/input_manager/scripts/input_manager.gd"
-MaterialService="*res://features/material/scripts/material_service.gd"
+GameManager="*res://scripts/manager/game_manager.gd"
+InputManager="*res://scripts/manager/input_manager.gd"
+MaterialService="*res://scripts/services/material_service.gd"
 
 [display]
 

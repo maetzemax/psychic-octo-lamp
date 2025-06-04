@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://5pslo1bqarlr"]
+
+[ext_resource type="Script" uid="uid://bj5ofhicbsont" path="res://scripts/enemy/general/enemy.gd" id="1_t6ylp"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_oahj1"]
+size = Vector2(32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sugp2"]
+size = Vector2(16, 16)
+
+[node name="Blue" type="CharacterBody2D" groups=["Enemy"]]
+z_index = 5
+collision_layer = 4
+collision_mask = 5
+script = ExtResource("1_t6ylp")
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+modulate = Color(0.227589, 0.500837, 0.869717, 1)
+mesh = SubResource("QuadMesh_oahj1")
+
+[node name="PhysicsCollision" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_sugp2")
+
+[node name="Hitbox" type="Area2D" parent="."]
+collision_layer = 4
+collision_mask = 18
+
+[node name="Collision" type="CollisionShape2D" parent="Hitbox"]
+shape = SubResource("RectangleShape2D_sugp2")
