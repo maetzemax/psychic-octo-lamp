@@ -2,7 +2,7 @@ extends Button
 
 @export var stat: StatsManager.STAT
 
-var _current_price = 5
+var _current_price
 
 func _ready():
 	_resolve_current_price()
@@ -10,7 +10,7 @@ func _ready():
 	pressed.connect(_on_upgrade_pressed)
 
 func _on_upgrade_pressed():
-	StatsManager.on_stat_upgrade.emit(stat)
+	StatsManager.stat_upgrade.emit(stat)
 
 func _resolve_current_price():
 	_current_price = StatsManager.resolve_current_price(stat)

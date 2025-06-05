@@ -2,21 +2,21 @@ extends Node
 
 enum STAT { HEALTH, ARMOR, DAMAGE, ATTACK_SPEED, ATTACK_RANGE, MOVEMENT_SPEED }
 
-signal on_stat_upgrade(stat: STAT)
-
+signal stat_upgrade(stat: STAT)
 signal price_update
 
 var player
 
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	on_stat_upgrade.connect(_on_stat_upgrade)
+	stat_upgrade.connect(_stat_upgrade)
 
-func _on_stat_upgrade(stat: STAT):
+func _stat_upgrade(stat: STAT):
 	player = get_tree().get_first_node_in_group("Player")
 	
 	if not player:
 		push_error("NO PLAYER")
+		
+	MaterialService.reduce_materials(resolve_current_price(stat))
 	
 	match stat:
 		STAT.HEALTH:
@@ -37,8 +37,7 @@ func _on_stat_upgrade(stat: STAT):
 		STAT.MOVEMENT_SPEED:
 			player.data.movement_speed += 0.01
 			player.data.movement_speed_price += 5
-	
-	MaterialService.reduce_materials(resolve_current_price(stat))
+
 	price_update.emit()
 
 func resolve_current_price(stat: STAT) -> int:
