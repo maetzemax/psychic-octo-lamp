@@ -154,7 +154,7 @@ layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
-attribute = 1
+stat = 1
 
 [node name="AttackDamage" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -192,7 +192,7 @@ layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
-attribute = 2
+stat = 2
 
 [node name="AttackSpeed" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -230,7 +230,7 @@ layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
-attribute = 3
+stat = 3
 
 [node name="AttackRange" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -268,7 +268,7 @@ layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
-attribute = 4
+stat = 4
 
 [node name="MovementSpeed" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -306,4 +306,4 @@ layout_mode = 2
 text = "+"
 icon_alignment = 1
 script = ExtResource("4_g661m")
-attribute = 5
+stat = 5

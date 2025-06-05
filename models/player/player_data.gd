@@ -2,10 +2,6 @@ extends Resource
 
 class_name PlayerData
 
-signal on_stat_upgrade(attribute: ATTRIBUTES)
-
-enum ATTRIBUTES { HEALTH, ARMOR, DAMAGE, ATTACK_SPEED, ATTACK_RANGE, MOVEMENT_SPEED }
-
 @export var health: int = 20
 var current_health: int
 @export var armor: int = 0
