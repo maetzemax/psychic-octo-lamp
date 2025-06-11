@@ -1,8 +1,9 @@
-[gd_scene load_steps=24 format=3 uid="uid://couo32eywatkc"]
+[gd_scene load_steps=25 format=3 uid="uid://couo32eywatkc"]
 
 [ext_resource type="PackedScene" uid="uid://ualegbp2h0us" path="res://scenes/level design/arena.tscn" id="1_c4odk"]
 [ext_resource type="PackedScene" uid="uid://bfwdxpk4ersdu" path="res://scenes/player/player.tscn" id="2_bh73x"]
 [ext_resource type="Script" uid="uid://bw1uwx2abqegh" path="res://scripts/services/spawn_service.gd" id="3_74iqh"]
+[ext_resource type="Texture2D" uid="uid://by6krudeq3b3e" path="res://assets/light/round_smooth.png" id="3_u80oo"]
 [ext_resource type="Script" uid="uid://ce1wxqej866kx" path="res://scripts/ui/views/ui.gd" id="4_itjqq"]
 [ext_resource type="Script" uid="uid://bggrjuka5tnjm" path="res://scripts/services/wave_service.gd" id="5_ksm3f"]
 [ext_resource type="PackedScene" uid="uid://bkptboaj742ho" path="res://scenes/ui/views/active_ui.tscn" id="5_orit8"]
@@ -104,9 +105,20 @@ metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
 [node name="Level" type="Node2D"]
 
+[node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
+rotation = 1.16759
+blend_mode = 1
+shadow_enabled = true
+shadow_color = Color(0, 0, 0, 0.756863)
+max_distance = 2425.0
+
 [node name="Arena" parent="." instance=ExtResource("1_c4odk")]
 
 [node name="Player" parent="." instance=ExtResource("2_bh73x")]
+
+[node name="PointLight2D" type="PointLight2D" parent="Player"]
+color = Color(1, 1, 0.866667, 1)
+texture = ExtResource("3_u80oo")
 
 [node name="User Interface" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_service")]
 script = ExtResource("4_itjqq")
