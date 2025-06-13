@@ -2,6 +2,8 @@ extends Node2D
 
 class_name EnemyMovementService
 
+const SEARCH_RADIUS = 300
+
 signal target_pos_reached
 
 var sprite: Sprite2D
@@ -48,20 +50,25 @@ func _zick_zack_movement():
 	pass
 
 func _random_movement():
-	if global_position.distance_to(target_pos) < 10 or target_pos == Vector2.ZERO:
-		var world_size = (sprite.texture.get_height() - 32) / 2
-
-		var random_pos: Vector2 = Vector2(
-			randi_range(-world_size, world_size),
-			randi_range(-world_size, world_size)
-		)
-
-		target_pos = random_pos
-			
-		var direction = (target_pos - global_position).normalized()
-		enemy.velocity = direction.normalized() * Constants.MOVEMENT_SPEED * enemy.data.movement_speed
-		enemy.move_and_slide()
+	if global_position.distance_to(target_pos) < 20 or not target_pos:
+		var found_valid_position = false
 		
+		var angle = randf() * TAU
+		var distance = randf_range(0, SEARCH_RADIUS)
+		var offset = Vector2(cos(angle), sin(angle)) * distance
+		var candidate_pos = global_position + offset
+
+		var space_state = get_world_2d().direct_space_state
+		var query = PhysicsRayQueryParameters2D.create(candidate_pos, global_position, 1)
+		query.exclude = [self]
+		query.collide_with_areas = true
+		query.hit_from_inside = true
+		var result = space_state.intersect_ray(query)
+
+		if result and result.collider:
+			target_pos = result.position
+			found_valid_position = true
+
 		target_pos_reached.emit()
 	else:
 		var direction = (target_pos - global_position).normalized()

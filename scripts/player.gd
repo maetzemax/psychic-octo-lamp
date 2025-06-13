@@ -29,7 +29,7 @@ func _on_movement_input_changed(direction: Vector2):
 func reduce_health(amount: int):
 	var damage_taken = max(1, amount - data.armor)
 	data.current_health -= damage_taken
-	animation_player.play("damage")
+	animation_player.play("damage", 0)
 	if data.current_health <= 0:
 		die()
 

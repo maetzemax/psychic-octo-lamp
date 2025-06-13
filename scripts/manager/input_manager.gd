@@ -22,15 +22,12 @@ func _input(_event: InputEvent):
 	
 	movement_input_changed.emit(direction)
 	
-	if animation_player:
-		if _left:
-			animation_player.queue("walk_left")
-		elif _right:
-			animation_player.queue("walk_right")
-		elif _up or _down:
-			animation_player.queue("walk_right")
-		else:
-			animation_player.pause()
+	if _left:
+		animation_player.play("walk_left")
+	elif _right:
+		animation_player.play("walk_right")
+	elif _up or _down:
+		animation_player.play("walk_right")
 
 func _unhandled_input(event: InputEvent):
 	if event:

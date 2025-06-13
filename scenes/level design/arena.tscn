@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://ualegbp2h0us"]
+[gd_scene load_steps=9 format=3 uid="uid://ualegbp2h0us"]
 
 [ext_resource type="Texture2D" uid="uid://cnfgrvu6rxt2o" path="res://assets/arena_background.png" id="1_3m0i4"]
 
@@ -20,7 +20,11 @@ size = Vector2(1025, 1)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tefeu"]
 size = Vector2(1025, 1)
 
-[node name="Arena" type="Node2D" groups=["World"]]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_618na"]
+size = Vector2(1024, 1024)
+
+[node name="Arena" type="Area2D" groups=["World"]]
+collision_mask = 0
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_3m0i4")
@@ -136,3 +140,6 @@ mesh = SubResource("BoxMesh_o5qli")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Borders/BorderRight"]
 shape = SubResource("RectangleShape2D_tefeu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_618na")

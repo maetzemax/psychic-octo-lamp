@@ -17,26 +17,6 @@
 [ext_resource type="Script" uid="uid://ba5armmji875s" path="res://models/enemy/ranged_enemy_data.gd" id="10_hgyux"]
 [ext_resource type="PackedScene" uid="uid://5pslo1bqarlr" path="res://scenes/enemy/blue.tscn" id="11_d750j"]
 
-[sub_resource type="Resource" id="Resource_6egul"]
-script = ExtResource("7_agx1c")
-model = ExtResource("11_d750j")
-health = 5
-movement_type = 0
-movement_speed = 0.6
-attack_ability = 0
-attack_damage = 2
-attack_speed = 1.0
-metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
-
-[sub_resource type="Resource" id="Resource_d750j"]
-script = ExtResource("6_u80oo")
-enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_6egul")])
-wave_time = 20
-spawn_cooldown = 3.0
-min_spawn_amount = 2
-max_spawn_amount = 4
-metadata/_custom_type_script = "uid://kbyxa06mqqre"
-
 [sub_resource type="Resource" id="Resource_x5ief"]
 script = ExtResource("10_hgyux")
 attack_range = 20.0
@@ -44,7 +24,7 @@ projectile_scene = ExtResource("9_nq67m")
 projectile_speed = 40.0
 model = ExtResource("8_mv7eo")
 health = 10
-movement_type = 0
+movement_type = 2
 movement_speed = 0.6
 attack_ability = 1
 attack_damage = 1
@@ -94,6 +74,26 @@ min_spawn_amount = 1
 max_spawn_amount = 4
 metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
+[sub_resource type="Resource" id="Resource_6egul"]
+script = ExtResource("7_agx1c")
+model = ExtResource("11_d750j")
+health = 5
+movement_type = 0
+movement_speed = 0.6
+attack_ability = 0
+attack_damage = 2
+attack_speed = 1.0
+metadata/_custom_type_script = "uid://d0c8cfw7e8kp0"
+
+[sub_resource type="Resource" id="Resource_d750j"]
+script = ExtResource("6_u80oo")
+enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_6egul")])
+wave_time = 20
+spawn_cooldown = 3.0
+min_spawn_amount = 2
+max_spawn_amount = 4
+metadata/_custom_type_script = "uid://kbyxa06mqqre"
+
 [sub_resource type="Resource" id="Resource_6wqlb"]
 script = ExtResource("6_u80oo")
 enemies = Array[ExtResource("7_agx1c")]([SubResource("Resource_we3g0"), SubResource("Resource_xppne")])
@@ -107,6 +107,7 @@ metadata/_custom_type_script = "uid://kbyxa06mqqre"
 
 [node name="DirectionalLight2D" type="DirectionalLight2D" parent="."]
 rotation = 1.16759
+energy = 0.9
 blend_mode = 1
 shadow_enabled = true
 shadow_color = Color(0, 0, 0, 0.756863)
@@ -117,7 +118,6 @@ max_distance = 2425.0
 [node name="Player" parent="." instance=ExtResource("2_bh73x")]
 
 [node name="PointLight2D" type="PointLight2D" parent="Player"]
-color = Color(1, 1, 0.866667, 1)
 texture = ExtResource("3_u80oo")
 
 [node name="User Interface" type="CanvasLayer" parent="." node_paths=PackedStringArray("wave_service")]
@@ -130,7 +130,7 @@ died_ui_scene = ExtResource("6_dankv")
 
 [node name="WaveService" type="Node" parent="."]
 script = ExtResource("5_ksm3f")
-waves = Array[ExtResource("6_u80oo")]([SubResource("Resource_d750j"), SubResource("Resource_qxe0l"), SubResource("Resource_ch0dr"), SubResource("Resource_6wqlb")])
+waves = Array[ExtResource("6_u80oo")]([SubResource("Resource_qxe0l"), SubResource("Resource_ch0dr"), SubResource("Resource_d750j"), SubResource("Resource_6wqlb")])
 metadata/_custom_type_script = "uid://bggrjuka5tnjm"
 
 [node name="Spawner" type="Node2D" parent="WaveService" node_paths=PackedStringArray("world", "player", "wave_service")]
